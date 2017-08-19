@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <title>Welcome user</title>
-    <link rel="stylesheet" href="/CSSforJSP/view.css" type="text/css"/>
+    <link rel="stylesheet" href="/CSSforJSP/welcomeview.css" type="text/css"/>
 </head>
 <body>
 <div class="h1"><h1>Welcome to  <br>Simple-Version BBS</h1></div>
@@ -22,12 +22,12 @@
         <label>name    </label>
         <input type="text" name="username"><br><br>
         <label>pwd       &nbsp;&nbsp;</label>
-        <input type="text" name="password"><br><br>
+        <input type="password" name="password"><br><br>
         <input type="submit" value="submit" id="submit">
     </table>
     </div>
     <br><br><br>
-    <a href="UserClServlet?type=gotoaddUser">沒有帳號?請點擊這裡申請</a>
+    <a href="/UserClServlet?type=gotoaddUser">沒有帳號?請點擊這裡申請</a>
 </form>
 
 

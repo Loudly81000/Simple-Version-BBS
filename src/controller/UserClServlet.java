@@ -18,6 +18,9 @@ public class UserClServlet extends HttpServlet {
             url = "/view/addUser.jsp";
         }
 
+        if(type.equals("gotowelcome")){
+            url="/view/welcome.jsp";
+        }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);
 
