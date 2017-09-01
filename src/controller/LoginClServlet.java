@@ -11,8 +11,14 @@ import java.io.IOException;
 public class LoginClServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String type = request.getParameter("type");
+        String url = "";
 
+        if(type.equals("gotologinView")){
+            url = "/view/loginView.jsp";
+        }
 
+        getServletContext().getRequestDispatcher(url).forward(request, response);
 
     }
 

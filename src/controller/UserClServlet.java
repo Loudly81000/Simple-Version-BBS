@@ -14,8 +14,8 @@ public class UserClServlet extends HttpServlet {
         String type = request.getParameter("type");
         String url = "";
 
-        if(type.equals("gotoaddUser")){
-            url = "/view/addUser.jsp";
+        if(type.equals("gotoaddInfo")){
+            url = "/view/addInfo.jsp";
         }
 
         if(type.equals("gotowelcome")){
