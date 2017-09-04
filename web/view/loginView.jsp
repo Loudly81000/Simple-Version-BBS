@@ -1,122 +1,143 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ASUS
-  Date: 9/1/2017
-  Time: 8:34 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOBTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="/CSSforJSP/loginView.css" type="text/css"/>
+    <title>Add User Information</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="/CSSforJSP/test.css" type="text/css"/>
 </head>
+
 <body>
-<div class="container">
-    <div class="card card-container">
-        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-        <p id="profile-name" class="profile-name-card"></p>
-        <form class="form-signin" action="">
-            <span id="reauth-email" class="reauth-email"></span>
-            <input type="text" id="inputUsername" class="form-control" placeholder="Username" name="post_name"required autofocus>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="post_pwd"required>
-            <div id="remember" class="checkbox">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
+<div class="text-center" style="padding:50px 0">
+    <div class="logo">login</div>
+    <!-- Main Form -->
+    <div class="login-form-1">
+        <form id="login-form" class="text-left">
+            <div class="login-form-main-message"></div>
+            <div class="main-login-form">
+                <div class="login-group">
+                    <div class="form-group">
+                        <label for="lg_username" class="sr-only">Username</label>
+                        <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="lg_password" class="sr-only">Password</label>
+                        <input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password">
+                    </div>
+                    <div class="form-group login-group-checkbox">
+                        <input type="checkbox" id="lg_remember" name="lg_remember">
+                        <label for="lg_remember">remember</label>
+                    </div>
+                </div>
+                <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
             </div>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-        </form><!-- /form -->
-        <a href="" class="forgot-password">
-            Forgot the password?
-        </a>
-    </div><!-- /card-container -->
-</div><!-- /container -->
+            <div class="etc-login-form">
+                <p>forgot your password? <a href="#">click here</a></p>
+                <p>new user? <a href="#">create new account</a></p>
+            </div>
+        </form>
+    </div>
+    <!-- end:Main Form -->
+</div>
 
 </body>
 </html>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+
 <script>
-    $( document ).ready(function() {
-        // DOM ready
+    (function($) {
+        "use strict";
 
-        // Test data
-        /*
-         * To test the script you should discomment the function
-         * testLocalStorageData and refresh the page. The function
-         * will load some test data and the loadProfile
-         * will do the changes in the UI
-         */
-        // testLocalStorageData();
-        // Load profile if it exits
-        loadProfile();
-    });
+        // Options for Message
+        //----------------------------------------------
+        var options = {
+            'btn-loading': '<i class="fa fa-spinner fa-pulse"></i>',
+            'btn-success': '<i class="fa fa-check"></i>',
+            'btn-error': '<i class="fa fa-remove"></i>',
+            'msg-success': 'All Good! Redirecting...',
+            'msg-error': 'Wrong login credentials!',
+            'useAJAX': true,
+        };
 
-    /**
-     * Function that gets the data of the profile in case
-     * thar it has already saved in localstorage. Only the
-     * UI will be update in case that all data is available
-     *
-     * A not existing key in localstorage return null
-     *
-     */
-    function getLocalProfile(callback){
-        var profileImgSrc      = localStorage.getItem("PROFILE_IMG_SRC");
-        var profileName        = localStorage.getItem("PROFILE_NAME");
-        var profileReAuthEmail = localStorage.getItem("PROFILE_REAUTH_EMAIL");
-
-        if(profileName !== null
-            && profileReAuthEmail !== null
-            && profileImgSrc !== null) {
-            callback(profileImgSrc, profileName, profileReAuthEmail);
-        }
-    }
-
-    /**
-     * Main function that load the profile if exists
-     * in localstorage
-     */
-    function loadProfile() {
-        if(!supportsHTML5Storage()) { return false; }
-        // we have to provide to the callback the basic
-        // information to set the profile
-        getLocalProfile(function(profileImgSrc, profileName, profileReAuthEmail) {
-            //changes in the UI
-            $("#profile-img").attr("src",profileImgSrc);
-            $("#profile-name").html(profileName);
-            $("#reauth-email").html(profileReAuthEmail);
-            $("#inputEmail").hide();
-            $("#remember").hide();
+        // Login Form
+        //----------------------------------------------
+        // Validation
+        $("#login-form").validate({
+            rules: {
+                lg_username: "required",
+                lg_password: "required",
+            },
+            errorClass: "form-invalid"
         });
-    }
 
-    /**
-     * function that checks if the browser supports HTML5
-     * local storage
-     *
-     * @returns {boolean}
-     */
-    function supportsHTML5Storage() {
-        try {
-            return 'localStorage' in window && window['localStorage'] !== null;
-        } catch (e) {
-            return false;
+        // Form Submission
+        $("#login-form").submit(function() {
+            remove_loading($(this));
+
+            if(options['useAJAX'] == true)
+            {
+                // Dummy AJAX request (Replace this with your AJAX code)
+                // If you don't want to use AJAX, remove this
+                dummy_submit_form($(this));
+
+                // Cancel the normal submission.
+                // If you don't want to use AJAX, remove this
+                return false;
+            }
+        });
+
+
+        // Loading
+        //----------------------------------------------
+        function remove_loading($form)
+        {
+            $form.find('[type=submit]').removeClass('error success');
+            $form.find('.login-form-main-message').removeClass('show error success').html('');
         }
-    }
 
-    /**
-     * Test data. This data will be safe by the web app
-     * in the first successful login of a auth user.
-     * To Test the scripts, delete the localstorage data
-     * and comment this call.
-     *
-     * @returns {boolean}
-     */
-    function testLocalStorageData() {
-        if(!supportsHTML5Storage()) { return false; }
-        localStorage.setItem("PROFILE_IMG_SRC", "//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" );
-        localStorage.setItem("PROFILE_NAME", "César Izquierdo Tello");
-        localStorage.setItem("PROFILE_REAUTH_EMAIL", "oneaccount@gmail.com");
-    }
+        function form_loading($form)
+        {
+            $form.find('[type=submit]').addClass('clicked').html(options['btn-loading']);
+        }
+
+        function form_success($form)
+        {
+            $form.find('[type=submit]').addClass('success').html(options['btn-success']);
+            $form.find('.login-form-main-message').addClass('show success').html(options['msg-success']);
+        }
+
+        function form_failed($form)
+        {
+            $form.find('[type=submit]').addClass('error').html(options['btn-error']);
+            $form.find('.login-form-main-message').addClass('show error').html(options['msg-error']);
+        }
+
+        // Dummy Submit Form (Remove this)
+        //----------------------------------------------
+        // This is just a dummy form submission. You should use your AJAX function or remove this function if you are not using AJAX.
+        function dummy_submit_form($form)
+        {
+            if($form.valid())
+            {
+                form_loading($form);
+
+                setTimeout(function() {
+                    form_success($form);
+                }, 2000);
+            }
+        }
+
+    })(jQuery);
 </script>

@@ -4,18 +4,31 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    private String UserID;
+    private String userID;
     private String password;
     private String email;
+    private String my_desc;
+    private boolean gender;
+    //true==male false==female
 
+    public User() {
 
+    }
+
+    public User(String userID, String password, String email, String my_desc, boolean gender) {
+        userID = userID;
+        this.password = password;
+        this.email = email;
+        this.my_desc = my_desc;
+        this.gender = gender;
+    }
 
     public String getUserID() {
-        return UserID;
+        return userID;
     }
 
     public void setUserID(String userID) {
-        UserID = userID;
+        userID = userID;
     }
 
     public String getPassword() {
@@ -33,4 +46,23 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getMy_desc() {
+        return my_desc;
+    }
+
+    public void setMy_desc(String my_desc) {
+        this.my_desc = my_desc;
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
+
+
 }
