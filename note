@@ -1,0 +1,29 @@
+2017/9/4
+1.查出使用Bootstrap的方法,需要將Bootstrap的CSS文檔連結貼到head
+2.新增用戶資料頁面找例子中
+3.登入頁面以及Welcome頁面會可能會更改,希望樣式統一
+4.等login/Wel/AddUser三個頁面完成後接下來的工作流程為:
+  a.立好Business Object以及Table
+  b.將dao層建立
+  c.完成controller
+  d.開始建立留言板
+  
+版型:
+Comment page
+https://bootsnipp.com/snippets/6yZP
+
+Sign up page
+https://bootsnipp.com/snippets/KB5EW
+https://bootsnipp.com/snippets/featured/simple-contact-form(O)
+
+Login page
+https://bootsnipp.com/snippets/featured/custom-login-registration-amp-forgot-password(O)
+https://bootsnipp.com/snippets/featured/google-style-login
+https://bootsnipp.com/snippets/kE9rg
+
+
+2017/9/5
+1.將user_list資料表於DB建立完畢
+本日目標:
+1.新增用戶&登入驗證完工
+2.dao層完工
