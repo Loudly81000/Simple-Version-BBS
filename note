@@ -20,3 +20,10 @@ Login page
 https://bootsnipp.com/snippets/featured/custom-login-registration-amp-forgot-password(O)
 https://bootsnipp.com/snippets/featured/google-style-login
 https://bootsnipp.com/snippets/kE9rg
+
+
+2017/9/5
+1.將user_list資料表於DB建立完畢
+本日目標:
+1.新增用戶&登入驗證完工
+2.dao層完工
