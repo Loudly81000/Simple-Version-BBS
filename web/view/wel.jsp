@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<h2>Welcome to  <br>Simple-Version BBS</h2>
+<h2>Welcome to  <br>Zheng's WebBoard</h2>
 
 
 <button style="width:auto;" onclick="self.location.href='/LoginClServlet?type=gotologinView'">

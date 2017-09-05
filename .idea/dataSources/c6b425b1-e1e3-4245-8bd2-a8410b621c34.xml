@@ -14,96 +14,152 @@
     <schema id="8" parent="1" name="performance_schema"/>
     <schema id="9" parent="1" name="phpmyadmin"/>
     <schema id="10" parent="1" name="sys"/>
-    <table id="11" parent="2" name="user"/>
-    <table id="12" parent="2" name="xAPI-Edu-Data"/>
-    <column id="13" parent="11" name="UserID">
+    <table id="11" parent="2" name="comment"/>
+    <table id="12" parent="2" name="user"/>
+    <table id="13" parent="2" name="user_list"/>
+    <table id="14" parent="2" name="xAPI-Edu-Data"/>
+    <column id="15" parent="11" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="16" parent="11" name="uid">
+      <Position>2</Position>
+      <DataType>int(20)|0</DataType>
+    </column>
+    <column id="17" parent="11" name="comment">
+      <Position>3</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <index id="18" parent="11" name="comment_user_UserID_fk">
+      <ColNames>uid</ColNames>
+    </index>
+    <key id="19" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="20" parent="11" name="comment_user_UserID_fk">
+      <ColNames>uid</ColNames>
+      <RefSchemaName>zhengfuyi</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>UserID</RefColNames>
+    </foreign-key>
+    <column id="21" parent="12" name="UserID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="14" parent="11" name="Email">
+    <column id="22" parent="12" name="Email">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="15" parent="11" name="FirstName">
+    <column id="23" parent="12" name="FirstName">
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="16" parent="11" name="LastName">
+    <column id="24" parent="12" name="LastName">
       <Position>4</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <key id="17" parent="11" name="PRIMARY">
+    <key id="25" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>UserID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="18" parent="12" name="gender">
+    <column id="26" parent="13" name="userID">
+      <Position>1</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="13" name="password">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="28" parent="13" name="email">
+      <Position>3</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="29" parent="13" name="my_desc">
+      <Position>4</Position>
+      <DataType>longtext|0</DataType>
+    </column>
+    <column id="30" parent="13" name="gender">
+      <Position>5</Position>
+      <DataType>tinyint(1)|0</DataType>
+    </column>
+    <key id="31" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>userID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="32" parent="14" name="gender">
       <Position>1</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="19" parent="12" name="NationalITy">
+    <column id="33" parent="14" name="NationalITy">
       <Position>2</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="20" parent="12" name="PlaceofBirth">
+    <column id="34" parent="14" name="PlaceofBirth">
       <Position>3</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="21" parent="12" name="StageID">
+    <column id="35" parent="14" name="StageID">
       <Position>4</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="22" parent="12" name="GradeID">
+    <column id="36" parent="14" name="GradeID">
       <Position>5</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="23" parent="12" name="SectionID">
+    <column id="37" parent="14" name="SectionID">
       <Position>6</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="24" parent="12" name="Topic">
+    <column id="38" parent="14" name="Topic">
       <Position>7</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="25" parent="12" name="Semester">
+    <column id="39" parent="14" name="Semester">
       <Position>8</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="26" parent="12" name="Relation">
+    <column id="40" parent="14" name="Relation">
       <Position>9</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="27" parent="12" name="raisedhands">
+    <column id="41" parent="14" name="raisedhands">
       <Position>10</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="28" parent="12" name="VisITedResources">
+    <column id="42" parent="14" name="VisITedResources">
       <Position>11</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="29" parent="12" name="AnnouncementsView">
+    <column id="43" parent="14" name="AnnouncementsView">
       <Position>12</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="30" parent="12" name="Discussion">
+    <column id="44" parent="14" name="Discussion">
       <Position>13</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="31" parent="12" name="ParentAnsweringSurvey">
+    <column id="45" parent="14" name="ParentAnsweringSurvey">
       <Position>14</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="32" parent="12" name="ParentschoolSatisfaction">
+    <column id="46" parent="14" name="ParentschoolSatisfaction">
       <Position>15</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="33" parent="12" name="StudentAbsenceDays">
+    <column id="47" parent="14" name="StudentAbsenceDays">
       <Position>16</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="34" parent="12" name="Class">
+    <column id="48" parent="14" name="Class">
       <Position>17</Position>
       <DataType>text|0</DataType>
     </column>

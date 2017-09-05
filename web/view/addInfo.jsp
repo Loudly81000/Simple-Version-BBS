@@ -15,11 +15,11 @@
 <div class="container">
     <div class="col-md-5">
         <div class="form-area">
-            <form role="form" action="" method="post">
+            <form role="form" method="post" action="/UserClServlet?type=addInfo">
                 <br style="clear:both">
                 <h3 style="margin-bottom: 25px; text-align: center;">Sign Up</h3>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="Name" required>
+                    <input type="text" class="form-control" name="userID" placeholder="Name" required>
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="Password" required>
@@ -29,20 +29,20 @@
                 </div>
                 <div class="form-group">
                     <label class="radio-inline">
-                        <input type="radio" name="gender"  value="Male" required>Male
+                        <input type="radio" name="gender"  value="male" required>Male
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="gender"  value="Female"required>Female
+                        <input type="radio" name="gender"  value="female"required>Female
                     </label>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" name="desc" type="textarea" placeholder="Pls introduce yourself"
+                    <textarea class="form-control" name="my_desc" type="textarea" placeholder="Pls introduce yourself"
                               maxlength="140" rows="7"></textarea>
                     <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
                 </div>
+                <a href="/UserClServlet?type=gotowelcome" >return to last page</a>
 
-                <a href="/LoginClServlet" >return to last page</a>
-                <button type="button" id="submit" name="submit" class="btn btn-primary pull-right">Submit</button>
+                <input type="submit" id="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
             </form>
         </div>
     </div>
