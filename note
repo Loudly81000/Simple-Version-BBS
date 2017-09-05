@@ -23,7 +23,9 @@ https://bootsnipp.com/snippets/kE9rg
 
 
 2017/9/5
-1.將user_list資料表於DB建立完畢
+1.將user_list資料表於DB建立完畢(O)
 本日目標:
-1.新增用戶&登入驗證完工
+1.新增用戶&登入驗證完成
+  新增用戶達成(O)
 2.dao層完工
+  dao層只有insert method與getConnection method完成(O) 
