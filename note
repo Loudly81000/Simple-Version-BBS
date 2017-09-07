@@ -29,3 +29,13 @@ https://bootsnipp.com/snippets/kE9rg
   新增用戶達成(O)
 2.dao層完工
   dao層只有insert method與getConnection method完成(O) 
+  
+2017/9/6
+1.登入驗證方法完成
+
+2017/9/7
+1.登入驗證時不知為何會卡在登入頁面
+  用debugger測試後傳入loginClServlet的值竟然是gotologinview(明明type就設定另一個參數)
+  可能把button標籤改成input的button造成?
+  或是servlet的if判斷式用錯?
+  
