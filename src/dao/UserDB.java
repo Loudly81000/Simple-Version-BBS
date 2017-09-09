@@ -3,6 +3,7 @@ package dao;
 import domain.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class UserDB {
 
@@ -10,7 +11,8 @@ public class UserDB {
     public static final String username = "zhengfuyi";
     public static final String password = "it6oMGUPNX1utE68";
 
-    Connection dbConnection  = null;
+    private Connection dbConnection  = null;
+    private String sql;
 
     //insert data to table user_list
     public Boolean insert(User user) {
@@ -24,7 +26,7 @@ public class UserDB {
                 dbConnection = getDbConnection();
 
                 //Step2 send sql to PreparedStatement
-                String sql = "INSERT INTO user_list (userID, password, email, my_desc, gender)" +
+                sql = "INSERT INTO user_list (userID, password, email, my_desc, gender)" +
                                 " VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement PreStat = dbConnection.prepareStatement(sql);
                 PreStat.setString(1,user.getUserID());
@@ -51,6 +53,61 @@ public class UserDB {
             }
             return result;
     }
+
+
+    //query user's info by userID(primary key)
+    public User queryByuserID(User user){
+
+        User re = null;
+
+        try {
+
+            //create sql
+            sql = "select * from user_list where userID = ?";
+
+            //create connection
+            dbConnection = getDbConnection();
+            PreparedStatement prepstat = dbConnection.prepareStatement(sql);
+
+            //send sql to db to get query result
+            prepstat.setString(1,user.getUserID());
+            ResultSet rs = prepstat.executeQuery();
+            while(rs.next()){
+                String userID = rs.getString(1);
+                String password = rs.getString(2);
+                String email = rs.getString(3);
+                String my_desc = rs.getString(4);
+                Boolean gender = rs.getBoolean(5);
+                re = new User(userID, password, email, my_desc, gender);
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                dbConnection.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+
+        return re;
+    }
+
+    //password verification
+    //parameter is the value from user inputted
+    public Boolean getVerifyResult(User user){
+
+        Boolean verifyResult = false;
+        User queryResultByuserID = queryByuserID(user);
+        String password = queryResultByuserID.getPassword();
+        if(password.equals(user.getPassword())){
+            verifyResult = true;
+        }
+        return verifyResult;
+    }
+
+
 
 
     public Connection getDbConnection(){

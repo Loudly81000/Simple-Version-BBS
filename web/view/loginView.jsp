@@ -17,28 +17,28 @@
     <div class="logo">login</div>
     <!-- Main Form -->
     <div class="login-form-1">
-        <form id="login-form" class="text-left">
+        <form id="login-form" class="text-left" action="/LoginClServlet?type=verification" method="post">
             <div class="login-form-main-message"></div>
             <div class="main-login-form">
                 <div class="login-group">
                     <div class="form-group">
                         <label for="lg_username" class="sr-only">Username</label>
-                        <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username">
+                        <input type="text" class="form-control" id="lg_username" name="userID" placeholder="username">
                     </div>
                     <div class="form-group">
                         <label for="lg_password" class="sr-only">Password</label>
-                        <input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password">
+                        <input type="password" class="form-control" id="lg_password" name="password" placeholder="password">
                     </div>
                     <div class="form-group login-group-checkbox">
                         <input type="checkbox" id="lg_remember" name="lg_remember">
                         <label for="lg_remember">remember</label>
                     </div>
                 </div>
-                <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                <input type="submit" name="submit" class="login-button" >
             </div>
             <div class="etc-login-form">
-                <p>forgot your password? <a href="#">click here</a></p>
-                <p>new user? <a href="#">create new account</a></p>
+                <p>forgot your password? <a href="">click here</a></p>
+                <p>new user? <a href="/UserClServlet?type=addInfo">create new account</a></p>
             </div>
         </form>
     </div>
@@ -83,20 +83,20 @@
         });
 
         // Form Submission
-        $("#login-form").submit(function() {
-            remove_loading($(this));
-
-            if(options['useAJAX'] == true)
-            {
-                // Dummy AJAX request (Replace this with your AJAX code)
-                // If you don't want to use AJAX, remove this
-                dummy_submit_form($(this));
-
-                // Cancel the normal submission.
-                // If you don't want to use AJAX, remove this
-                return false;
-            }
-        });
+//        $("#login-form").submit(function() {
+//            remove_loading($(this));
+//
+//            if(options['useAJAX'] == true)
+//            {
+//                // Dummy AJAX request (Replace this with your AJAX code)
+//                // If you don't want to use AJAX, remove this
+//                //dummy_submit_form($(this));
+//
+//                // Cancel the normal submission.
+//                // If you don't want to use AJAX, remove this
+//                return false;
+//            }
+//        });
 
 
         // Loading
@@ -127,17 +127,17 @@
         // Dummy Submit Form (Remove this)
         //----------------------------------------------
         // This is just a dummy form submission. You should use your AJAX function or remove this function if you are not using AJAX.
-        function dummy_submit_form($form)
-        {
-            if($form.valid())
-            {
-                form_loading($form);
-
-                setTimeout(function() {
-                    form_success($form);
-                }, 2000);
-            }
-        }
+//        function dummy_submit_form($form)
+//        {
+//            if($form.valid())
+//            {
+//                form_loading($form);
+//
+//                setTimeout(function() {
+//                    form_success($form);
+//                }, 2000);
+//            }
+//        }
 
     })(jQuery);
 </script>

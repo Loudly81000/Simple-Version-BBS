@@ -1,5 +1,8 @@
 package controller;
 
+import dao.UserDB;
+import domain.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,9 +16,34 @@ public class LoginClServlet extends HttpServlet {
 
         String type = request.getParameter("type");
         String url = "";
+        UserDB userDB = new UserDB();
 
+        System.out.println(type);
         if(type.equals("gotologinView")){
             url = "/view/loginView.jsp";
+        }
+
+        if(type.equals("verification")){
+
+            //get user's value from form
+            String userID = request.getParameter("userID");
+            String password = request.getParameter("password");
+
+            //encapsulation & call method to verify
+            User user = new User();
+            user.setUserID(userID);
+            user.setPassword(password);
+            Boolean verifyRs = userDB.getVerifyResult(user);
+
+            //get login result and dispatch to jsp to show result
+            if(verifyRs){
+                request.setAttribute("result","success");
+            }
+            if(!verifyRs){
+                request.setAttribute("result", "fail");
+            }
+
+            url="/view/loginResult.jsp";
         }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);
