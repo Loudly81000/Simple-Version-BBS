@@ -92,6 +92,20 @@ https://bootsnipp.com/snippets/kE9rg
   2.是否可以直接在標籤內用style來改
   
 3.登入之後的頁面該怎麼做?
+
+
+2017/9/10
+1.Bootstrap的pagination可以用來做分頁
+2.NavBar可以用來做登入的用戶管理頁面
+3.在Bootsnipp找admin 或是homepage的tag可以找到用戶管理頁面的範本
+
+用來參考做homepage的範本:
+https://bootsnipp.com/snippets/pebRO
+https://bootsnipp.com/snippets/VRlEb
+https://bootsnipp.com/snippets/7QbEe
+https://bootsnipp.com/snippets/kl2OQ
+https://bootsnipp.com/snippets/6Nm2(O)唯一click navbar後會改變頁面內容的範本
+
   
    
     
