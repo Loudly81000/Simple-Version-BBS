@@ -23,7 +23,104 @@ https://bootsnipp.com/snippets/kE9rg
 
 
 2017/9/5
-1.將user_list資料表於DB建立完畢
+1.將user_list資料表於DB建立完畢(O)
 本日目標:
-1.新增用戶&登入驗證完工
+1.新增用戶&登入驗證完成
+  新增用戶達成(O)
 2.dao層完工
+  dao層只有insert method與getConnection method完成(O) 
+  
+  
+2017/9/6
+1.登入驗證方法完成
+
+
+2017/9/7
+1.登入驗證時不知為何會卡在登入頁面
+  用debugger測試後傳入loginClServlet的值竟然是gotologinview(明明type就設定另一個參數)
+  可能把button標籤改成input的button造成?
+  或是servlet的if判斷式用錯?
+  
+  step1.
+  找html的code發現jQuery裡面有dummy code
+  將下面註解後就可以跑但是又500error
+    
+            // Form Submission
+  //        $("#login-form").submit(function() {
+  //            remove_loading($(this));
+  //
+  //            if(options['useAJAX'] == true)
+  //            {
+  //                // Dummy AJAX request (Replace this with your AJAX code)
+  //                // If you don't want to use AJAX, remove this
+  //                //dummy_submit_form($(this));
+  //
+  //                // Cancel the normal submission.
+  //                // If you don't want to use AJAX, remove this
+  //                return false;
+  //            }
+  //        });
+  
+  // Dummy Submit Form (Remove this)
+        //----------------------------------------------
+        // This is just a dummy form submission. You should use your AJAX function or remove this function if you are not using AJAX.
+  //        function dummy_submit_form($form)
+  //        {
+  //            if($form.valid())
+  //            {
+  //                form_loading($form);
+  //
+  //                setTimeout(function() {
+  //                    form_success($form);
+  //                }, 2000);
+  //            }
+  //        }
+  
+  step2.
+  空指針
+  以為是驗證登入method的code中有try區域生命週期的問題
+  結果是Business object的User類別中set方法沒有寫好寫成
+  userID = userID;
+  應該要是
+  this.userID = userID
+  打太快沒注意
+  接下來就成功!
+  
+2.addInfo.jsp頁面的form會往左邊偏
+  不知道:
+  1.參照的Bootstrap的CSS檔案本來就是寫往左邊偏的?
+  2.是否可以直接在標籤內用style來改
+  
+3.登入之後的頁面該怎麼做?
+
+
+2017/9/10
+1.Bootstrap的pagination可以用來做分頁
+2.NavBar可以用來做登入的用戶管理頁面
+3.在Bootsnipp找admin 或是homepage的tag可以找到用戶管理頁面的範本
+
+用來參考做homepage的範本:
+https://bootsnipp.com/snippets/pebRO
+https://bootsnipp.com/snippets/VRlEb
+https://bootsnipp.com/snippets/7QbEe
+https://bootsnipp.com/snippets/kl2OQ
+https://bootsnipp.com/snippets/6Nm2(O)唯一click navbar後會改變頁面內容的範本
+
+  
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
