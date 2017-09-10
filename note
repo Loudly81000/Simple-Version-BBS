@@ -108,6 +108,8 @@ https://bootsnipp.com/snippets/6Nm2(O)唯一click navbar後會改變頁面內容
 
 4.將網路上留言版的code一部分抓到intellij測試實際的效果
 5.javascript快速入門花時間做完
+6.改版面用chromef12,再點element頁面上左上方圖示選要改的地方
+  改addUser的.container跟.form erea的地方
   
    
     
