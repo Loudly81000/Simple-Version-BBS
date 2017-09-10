@@ -124,6 +124,9 @@ Stage1.
 
 Stage2.
 1.多留言板 ?
+2.分頁
+  真分頁(不用select 就可以算資源)
+  假分頁(直接select * from table)算總數再算分頁比較耗資源
 
    
     
