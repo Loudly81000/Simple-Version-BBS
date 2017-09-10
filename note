@@ -110,7 +110,8 @@ https://bootsnipp.com/snippets/6Nm2(O)唯一click navbar後會改變頁面內容
 5.javascript快速入門花時間做完
 6.改版面用chromef12,再點element頁面上左上方圖示選要改的地方
   改addUser的.container跟.form erea的地方
-  
+7.新增留言跟修改留言塞同一個面板可以用
+  div來分割版面(因為都是form)
 
 Schedule
 Stage1.
