@@ -111,6 +111,18 @@ https://bootsnipp.com/snippets/6Nm2(O)唯一click navbar後會改變頁面內容
 6.改版面用chromef12,再點element頁面上左上方圖示選要改的地方
   改addUser的.container跟.form erea的地方
   
+
+Schedule
+Stage1.
+版面:左邊Nav bar為留言板/修改個人資料/登出
+1.註冊登入  9/10
+2.顯示留言板(誰/內容/時候)9/24
+3.新增留言 9/31
+4.修改留言 10/7
+
+Stage2.
+1.多留言板 ?
+
    
     
     
