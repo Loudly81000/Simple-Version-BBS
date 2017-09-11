@@ -128,6 +128,11 @@ Stage2.
   真分頁(不用select 就可以算資源)
   假分頁(直接select * from table)算總數再算分頁比較耗資源
 
+
+2017/9/11
+1.manager.jsp版面混亂因為我的tag不是用Bootstrap3.0的tag(O)
+2.1結束後,左邊navbar點後到其他網站
+  應該是bootstrap3.0.0需要下載包然後放到webproject裡面才能發動
    
     
     
