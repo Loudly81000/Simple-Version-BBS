@@ -134,8 +134,30 @@ Stage2.
 2.1結束後,左邊navbar點後到其他網站
   應該是bootstrap3.0.0需要下載包然後放到webproject裡面才能發動(X)
   實際上是jQuery沒引到所以html裡面的jQuery標籤沒起到作用
-   
-    
+ 
+2017/9/12
+1.先把顯示留言板的版面找到並拉到html上
+  顯示留言板版面
+  https://bootsnipp.com/snippets/featured/testimonials-based-on-bootstrap039s-6-primary-colors
+2.將文章的資料表建立好
+3.試試看能不能將資料Show在留言板上
+4.新增留言版面:
+  https://bootsnipp.com/snippets/6yZP
+5.post_info裡的時間要用Datetime比較好嗎?
+  存datetime,因為以後有搜尋的函式可以用
+  
+  LocalDateTime localdatetime = LocalDateTime.now();
+  String localdatetimestr = localdatetime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);(X)
+  取消這段在post_Info類別負責取現在時間的程式碼因為不確定這裡的格式跟mysql一樣
+  
+  改成stackoverflow中有人確定可以使用的這一段:
+  java.util.Date dt = new java.util.Date();
+  java.text.SimpleDateFormat sdf =
+  new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  String currentTime = sdf.format(dt);
+  並放在dao中取時間的時候可以用
+  然後post_Info的類別與mysql的table都用datatime統一
+  (因為應該有相關的函式可以用,要給User看的時候再用dao層的方法convert就好)
     
     
     
