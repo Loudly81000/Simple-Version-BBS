@@ -1,3 +1,10 @@
+description:
+(O)==完成 or 正確選擇
+(X)==未完成 or 廢棄選擇
+每天會用條列式的方式總結
+發生的事情 or 要解決的事情
+-------------------------------------------------------------------------------
+
 2017/9/4
 1.查出使用Bootstrap的方法,需要將Bootstrap的CSS文檔連結貼到head
 2.新增用戶資料頁面找例子中
@@ -135,6 +142,7 @@ Stage2.
   應該是bootstrap3.0.0需要下載包然後放到webproject裡面才能發動(X)
   實際上是jQuery沒引到所以html裡面的jQuery標籤沒起到作用
  
+ 
 2017/9/12
 1.先把顯示留言板的版面找到並拉到html上
   顯示留言板版面
@@ -143,6 +151,7 @@ Stage2.
 3.試試看能不能將資料Show在留言板上
 4.新增留言版面:
   https://bootsnipp.com/snippets/6yZP
+  
 5.post_info裡的時間要用Datetime比較好嗎?
   存datetime,因為以後有搜尋的函式可以用
   
@@ -155,9 +164,16 @@ Stage2.
   java.text.SimpleDateFormat sdf =
   new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
   String currentTime = sdf.format(dt);
-  並放在dao中取時間的時候可以用
-  然後post_Info的類別與mysql的table都用datatime統一
-  (因為應該有相關的函式可以用,要給User看的時候再用dao層的方法convert就好)
+  在post_Info類別中產生post_time的時候可以用
+  post_Info的類別可以直接用String類型因為網友測試yyyy-MM-dd HH:mm:ss格式的String可以存在mysql的datetime
+  
+6.登入頁面的超連結還沒有完成會跳exception因為jsp傳送表單時沒帶參數
+7.user_list表格將userID改成userName(O)
+  因為foerign key跟連過去talbe的primary key要一樣類型
+  所以將userName改名以及換成unique Key
+8.user_list還要加入uID這個值當作primarykey供作查詢功能時用
+
+
     
     
     
