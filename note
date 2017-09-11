@@ -106,7 +106,34 @@ https://bootsnipp.com/snippets/7QbEe
 https://bootsnipp.com/snippets/kl2OQ
 https://bootsnipp.com/snippets/6Nm2(O)唯一click navbar後會改變頁面內容的範本
 
-  
+4.將網路上留言版的code一部分抓到intellij測試實際的效果
+5.javascript快速入門花時間做完
+6.改版面用chromef12,再點element頁面上左上方圖示選要改的地方
+  改addUser的.container跟.form erea的地方
+7.新增留言跟修改留言塞同一個面板可以用
+  div來分割版面(因為都是form)
+
+Schedule
+Stage1.
+版面:左邊Nav bar為留言板/修改個人資料/登出
+1.註冊登入  9/10
+2.顯示留言板(誰/內容/時候)9/24
+3.新增留言 9/31
+4.修改留言 10/7
+ (用html的read only元件先設定,再用jQuery改read only的屬性成為可編輯)
+
+Stage2.
+1.多留言板 ?
+2.分頁
+  真分頁(不用select 就可以算資源)
+  假分頁(直接select * from table)算總數再算分頁比較耗資源
+
+
+2017/9/11
+1.manager.jsp版面混亂因為我的tag不是用Bootstrap3.0的tag(O)
+2.1結束後,左邊navbar點後到其他網站
+  應該是bootstrap3.0.0需要下載包然後放到webproject裡面才能發動(X)
+  實際上是jQuery沒引到所以html裡面的jQuery標籤沒起到作用
    
     
     
