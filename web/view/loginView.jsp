@@ -1,4 +1,4 @@
-<!DOBTYPE html>
+
 <html>
 
 <head>
@@ -37,17 +37,13 @@
                 <input type="submit" name="submit" class="login-button" >
             </div>
             <div class="etc-login-form">
-                <p>forgot your password? <a href="">click here</a></p>
+                <p>forgot your password? <a href="/UserClServlet?type=">click here</a></p>
                 <p>new user? <a href="/UserClServlet?type=addInfo">create new account</a></p>
             </div>
         </form>
     </div>
     <!-- end:Main Form -->
 </div>
-
-</body>
-</html>
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
@@ -55,6 +51,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+</body>
+</html>
 
 <script>
     (function($) {

@@ -54,6 +54,11 @@ public class UserClServlet extends HttpServlet {
 
         }
 
+
+        if(type.equals("gotomanager")){
+            url="/view/manager.jsp";
+        }
+
         getServletContext().getRequestDispatcher(url).forward(request, response);
 
     }

@@ -11,6 +11,17 @@
     <title>Title</title>
 </head>
 <body>
-<h1>${result}</h1>
+<c:choose>
+<c:when test="${result == true}">
+    <h1>${result}</h1>
+    <h2><a href="/UserClServlet?type=gotomanager">go to your webboard manager</a></h2>
+</c:when>
+
+<c:otherwise>
+    <h1>failed!</h1>
+    <h2><a href="/LoginClServlet?type=loginView.jsp">return to last page</a></h2>
+</c:otherwise>
+</c:choose>
+
 </body>
 </html>
