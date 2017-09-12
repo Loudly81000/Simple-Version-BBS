@@ -19,7 +19,7 @@
                 <br style="clear:both">
                 <h3 style="margin-bottom: 25px; text-align: center;">Sign Up</h3>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="userID" placeholder="Name" required>
+                    <input type="text" class="form-control" name="userName" placeholder="Name" required>
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="Password" required>

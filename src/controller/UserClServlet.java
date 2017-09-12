@@ -19,7 +19,7 @@ public class UserClServlet extends HttpServlet {
 
 
         if(type.equals("gotoaddInfo")){
-            url = "/view/addInfo.jsp";
+            url = "/view/addUser/addInfo.jsp";
         }
 
 
@@ -31,13 +31,13 @@ public class UserClServlet extends HttpServlet {
         if(type.equals("addInfo")){
 
             //receive value from addInfo.jsp
-            String userID = request.getParameter("userID");
+            String userName = request.getParameter("userName");
             String password = request.getParameter("password");
             String email = request.getParameter("email");
             String my_desc = request.getParameter("my_desc");
             String morf = request.getParameter("gender");
             Boolean gender;
-            System.out.println(userID);
+            System.out.println(userName);
 
             if(morf.equals("male")){
                 gender = true;
@@ -47,10 +47,10 @@ public class UserClServlet extends HttpServlet {
 
             //pass value to db
             UserDB userDB = new UserDB();
-            User user = new User(userID, password, email, my_desc, gender);
+            User user = new User(userName, password, email, my_desc, gender);
             Boolean result = userDB.insert(user);
             request.setAttribute("result", result);
-            url = "/view/addInfoResult.jsp";
+            url = "/view/addUser/addInfoResult.jsp";
 
         }
 

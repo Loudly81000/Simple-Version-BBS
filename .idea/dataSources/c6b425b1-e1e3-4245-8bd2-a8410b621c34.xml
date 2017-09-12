@@ -15,151 +15,203 @@
     <schema id="9" parent="1" name="phpmyadmin"/>
     <schema id="10" parent="1" name="sys"/>
     <table id="11" parent="2" name="comment"/>
-    <table id="12" parent="2" name="user"/>
-    <table id="13" parent="2" name="user_list"/>
-    <table id="14" parent="2" name="xAPI-Edu-Data"/>
-    <column id="15" parent="11" name="id">
+    <table id="12" parent="2" name="post_list"/>
+    <table id="13" parent="2" name="user"/>
+    <table id="14" parent="2" name="user_list"/>
+    <table id="15" parent="2" name="xAPI-Edu-Data"/>
+    <column id="16" parent="11" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="16" parent="11" name="uid">
+    <column id="17" parent="11" name="uid">
       <Position>2</Position>
       <DataType>int(20)|0</DataType>
     </column>
-    <column id="17" parent="11" name="comment">
+    <column id="18" parent="11" name="comment">
       <Position>3</Position>
       <DataType>text|0</DataType>
     </column>
-    <index id="18" parent="11" name="comment_user_UserID_fk">
+    <index id="19" parent="11" name="comment_user_UserID_fk">
       <ColNames>uid</ColNames>
     </index>
-    <key id="19" parent="11" name="PRIMARY">
+    <key id="20" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="20" parent="11" name="comment_user_UserID_fk">
+    <foreign-key id="21" parent="11" name="comment_user_UserID_fk">
       <ColNames>uid</ColNames>
       <RefSchemaName>zhengfuyi</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>UserID</RefColNames>
     </foreign-key>
-    <column id="21" parent="12" name="UserID">
+    <column id="22" parent="12" name="post_id">
+      <Position>1</Position>
+      <DataType>int(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="23" parent="12" name="post_title">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="24" parent="12" name="post_desc">
+      <Position>3</Position>
+      <DataType>longtext|0</DataType>
+    </column>
+    <column id="25" parent="12" name="post_time">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="26" parent="12" name="uid">
+      <Position>5</Position>
+      <DataType>int(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="27" parent="12" name="post_list_user_list_userID_fk">
+      <ColNames>uid</ColNames>
+    </index>
+    <key id="28" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>post_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="29" parent="12" name="post_list_user_list_userID_fk">
+      <ColNames>uid</ColNames>
+      <RefSchemaName>zhengfuyi</RefSchemaName>
+      <RefTableName>user_list</RefTableName>
+      <RefColNames>userID</RefColNames>
+    </foreign-key>
+    <column id="30" parent="13" name="UserID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="22" parent="12" name="Email">
+    <column id="31" parent="13" name="Email">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="23" parent="12" name="FirstName">
+    <column id="32" parent="13" name="FirstName">
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="24" parent="12" name="LastName">
+    <column id="33" parent="13" name="LastName">
       <Position>4</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <key id="25" parent="12" name="PRIMARY">
+    <key id="34" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>UserID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="26" parent="13" name="userID">
+    <column id="35" parent="14" name="userName">
       <Position>1</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="27" parent="13" name="password">
+    <column id="36" parent="14" name="password">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="28" parent="13" name="email">
+    <column id="37" parent="14" name="email">
       <Position>3</Position>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="29" parent="13" name="my_desc">
+    <column id="38" parent="14" name="my_desc">
       <Position>4</Position>
       <DataType>longtext|0</DataType>
     </column>
-    <column id="30" parent="13" name="gender">
+    <column id="39" parent="14" name="gender">
       <Position>5</Position>
       <DataType>tinyint(1)|0</DataType>
     </column>
-    <key id="31" parent="13" name="PRIMARY">
+    <column id="40" parent="14" name="userID">
+      <Position>6</Position>
+      <DataType>int(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <index id="41" parent="14" name="user_list_userName_uindex">
+      <ColNames>userName</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="42" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="32" parent="14" name="gender">
+    <key id="43" parent="14" name="user_list_userName_uindex">
+      <ColNames>userName</ColNames>
+      <UnderlyingIndexName>user_list_userName_uindex</UnderlyingIndexName>
+    </key>
+    <column id="44" parent="15" name="gender">
       <Position>1</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="33" parent="14" name="NationalITy">
+    <column id="45" parent="15" name="NationalITy">
       <Position>2</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="34" parent="14" name="PlaceofBirth">
+    <column id="46" parent="15" name="PlaceofBirth">
       <Position>3</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="35" parent="14" name="StageID">
+    <column id="47" parent="15" name="StageID">
       <Position>4</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="36" parent="14" name="GradeID">
+    <column id="48" parent="15" name="GradeID">
       <Position>5</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="37" parent="14" name="SectionID">
+    <column id="49" parent="15" name="SectionID">
       <Position>6</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="38" parent="14" name="Topic">
+    <column id="50" parent="15" name="Topic">
       <Position>7</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="39" parent="14" name="Semester">
+    <column id="51" parent="15" name="Semester">
       <Position>8</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="40" parent="14" name="Relation">
+    <column id="52" parent="15" name="Relation">
       <Position>9</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="41" parent="14" name="raisedhands">
+    <column id="53" parent="15" name="raisedhands">
       <Position>10</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="42" parent="14" name="VisITedResources">
+    <column id="54" parent="15" name="VisITedResources">
       <Position>11</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="43" parent="14" name="AnnouncementsView">
+    <column id="55" parent="15" name="AnnouncementsView">
       <Position>12</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="44" parent="14" name="Discussion">
+    <column id="56" parent="15" name="Discussion">
       <Position>13</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="45" parent="14" name="ParentAnsweringSurvey">
+    <column id="57" parent="15" name="ParentAnsweringSurvey">
       <Position>14</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="46" parent="14" name="ParentschoolSatisfaction">
+    <column id="58" parent="15" name="ParentschoolSatisfaction">
       <Position>15</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="47" parent="14" name="StudentAbsenceDays">
+    <column id="59" parent="15" name="StudentAbsenceDays">
       <Position>16</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="48" parent="14" name="Class">
+    <column id="60" parent="15" name="Class">
       <Position>17</Position>
       <DataType>text|0</DataType>
     </column>

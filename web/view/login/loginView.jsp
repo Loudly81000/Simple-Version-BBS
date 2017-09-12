@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="/CSSforJSP/test.css" type="text/css"/>
+    <link rel="stylesheet" href="/CSSforJSP/loginView.css" type="text/css"/>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
                 <div class="login-group">
                     <div class="form-group">
                         <label for="lg_username" class="sr-only">Username</label>
-                        <input type="text" class="form-control" id="lg_username" name="userID" placeholder="username">
+                        <input type="text" class="form-control" id="lg_username" name="userName" placeholder="username">
                     </div>
                     <div class="form-group">
                         <label for="lg_password" class="sr-only">Password</label>

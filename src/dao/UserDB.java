@@ -26,10 +26,10 @@ public class UserDB {
                 dbConnection = getDbConnection();
 
                 //Step2 send sql to PreparedStatement
-                sql = "INSERT INTO user_list (userID, password, email, my_desc, gender)" +
+                sql = "INSERT INTO user_list (userName, password, email, my_desc, gender)" +
                                 " VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement PreStat = dbConnection.prepareStatement(sql);
-                PreStat.setString(1,user.getUserID());
+                PreStat.setString(1,user.getUserName());
                 PreStat.setString(2,user.getPassword());
                 PreStat.setString(3,user.getEmail());
                 PreStat.setString(4,user.getMy_desc());
@@ -63,22 +63,22 @@ public class UserDB {
         try {
 
             //create sql
-            sql = "select * from user_list where userID = ?";
+            sql = "select * from user_list where userName = ?";
 
             //create connection
             dbConnection = getDbConnection();
             PreparedStatement prepstat = dbConnection.prepareStatement(sql);
 
             //send sql to db to get query result
-            prepstat.setString(1,user.getUserID());
+            prepstat.setString(1,user.getUserName());
             ResultSet rs = prepstat.executeQuery();
             while(rs.next()){
-                String userID = rs.getString(1);
+                String userName = rs.getString(1);
                 String password = rs.getString(2);
                 String email = rs.getString(3);
                 String my_desc = rs.getString(4);
                 Boolean gender = rs.getBoolean(5);
-                re = new User(userID, password, email, my_desc, gender);
+                re = new User(userName, password, email, my_desc, gender);
             }
 
         }catch(SQLException e){

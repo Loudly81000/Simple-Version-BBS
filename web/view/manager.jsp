@@ -1,4 +1,3 @@
-<!DOBTYPE html>
 <%--
   Created by IntelliJ IDEA.
   User: ASUS
@@ -13,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/CSSforJSP/manager.css" type="text/css"/>
     <style>
         @import url(http://netdna.bootstrapcdn.com/font-awesome/3.0.0/css/font-awesome.min.css);
         body{margin-top:20px;}
@@ -25,32 +25,41 @@
     <div class="row">
         <div class="col-md-3">
             <ul class="nav nav-pills nav-stacked admin-menu">
-                <li class="active"><a href="#" data-target-id="home"><i class="fa fa-home fa-fw"></i>Home</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="widgets"><i class="fa fa-list-alt fa-fw"></i>Widgets</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="pages"><i class="fa fa-file-o fa-fw"></i>Pages</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="charts"><i class="fa fa-bar-chart-o fa-fw"></i>Charts</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="table"><i class="fa fa-table fa-fw"></i>Table</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="home"><i class="fa fa-home fa-fw"></i>Home</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="pages"><i class="fa fa-file-o fa-fw"></i>Message Board</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="forms"><i class="fa fa-tasks fa-fw"></i>Write Comment</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="table"><i class="fa fa-table fa-fw"></i>Edit Comment</a></li>
             </ul>
         </div>
         <div class="col-md-9 well admin-content" id="home">
             <p>
-                Hello! This is a forked snippet.<br>
-                It is for users, which use one-page layouts.
+                Hello! Welcome to Message Board.<br>
+                You can click on  "Write Msg" tag , and leave message in here.
+                In "Edit Msg", edit message you leaved.<br>
+                Admin personal information in "Your Info"
             </p>
-            <p>
-                Here's the original one from BhaumikPatel: <a href="http://bootsnipp.com/snippets/featured/vertical-admin-menu" target="_BLANK">Vertical Admin Menu</a>
-                <br>
-                Thank you Baumik!
-            </p>
-        </div>
-        <div class="col-md-9 well admin-content" id="widgets">
-            Widgets
         </div>
         <div class="col-md-9 well admin-content" id="pages">
-            Pages
+            <div class="row">
+                <div class="col-sm-6">
+                    <div id="tb-testimonial" class="testimonial testimonial-default">
+                        <div class="testimonial-section">
+                            Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
+                        </div>
+                        <div class="testimonial-desc">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
+                            <div class="testimonial-writer">
+                                <div class="testimonial-writer-name">Zahed Kamal</div>
+                                <div class="testimonial-writer-designation">Front End Developer</div>
+                                <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-9 well admin-content" id="charts">
-            Charts
+        <div class="col-md-9 well admin-content" id="forms">
+            Forms
         </div>
         <div class="col-md-9 well admin-content" id="table">
             Table

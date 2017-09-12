@@ -16,7 +16,6 @@
     <c:when test="${result == true}">
         <h1>created account successfully</h1>
     </c:when>
-
     <c:otherwise>
         <h1>failed!</h1>
     </c:otherwise>
