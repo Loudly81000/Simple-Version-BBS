@@ -34,7 +34,7 @@
                         <label for="lg_remember">remember</label>
                     </div>
                 </div>
-                <input type="submit" name="submit" class="login-button" >
+                <input type="submit" name="submit" class="login-button" id="submit">
             </div>
             <div class="etc-login-form">
                 <p>forgot your password? <a href="/UserClServlet?type=">click here</a></p>

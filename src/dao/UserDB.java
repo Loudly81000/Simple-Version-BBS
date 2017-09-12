@@ -63,7 +63,7 @@ public class UserDB {
         try {
 
             //create sql
-            sql = "select * from user_list where userName = ?";
+            sql = "SELECT * FROM user_list WHERE userName = ?";
 
             //create connection
             dbConnection = getDbConnection();

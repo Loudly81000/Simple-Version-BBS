@@ -1,9 +1,11 @@
 package dao;
 
 import domain.Post_Info;
+import domain.ShowPost;
 import domain.User;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class PostDB {
@@ -25,10 +27,10 @@ public class PostDB {
     }
 
     //query user's info by userID(primary key)
-    public ArrayList<Post_Info> showPostInfo(Post_Info post_info){
+    public ArrayList<ShowPost> showPostInfo(Post_Info post_info){
 
-        ArrayList<Post_Info>post_infoList = null;
-        User user = null;
+        ArrayList<ShowPost>post_infoList = null;
+
 
         try {
 
@@ -42,19 +44,24 @@ public class PostDB {
 
             //create connection
             dbConnection = getDbConnection();
-            PreparedStatement prepstat = dbConnection.prepareStatement(sql);
+            Statement stat = dbConnection.createStatement();
 
             //send sql to db to get query result(user info)
-            prepstat.setString(1, "");
-            ResultSet rs = prepstat.executeQuery();
+            ResultSet rs = stat.executeQuery(sql);
             while(rs.next()){
+                String userName = rs.getString(1);
+                boolean gender = rs.getBoolean(2);
+                String post_title = rs.getString(3);
 
+                //get datetime from db and convert to String
+                Date pTime = rs.getDate(4);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String  post_time= sdf.format(pTime);
+
+                String post_desc = rs.getString(5);
+                ShowPost showPost = new ShowPost(userName, gender, post_title, post_time, post_desc);
+                post_infoList.add(showPost);
             }
-
-            //query
-
-
-
 
         }catch(SQLException e){
             e.printStackTrace();
@@ -65,7 +72,6 @@ public class PostDB {
                 e.printStackTrace();
             }
         }
-
         return post_infoList;
     }
 

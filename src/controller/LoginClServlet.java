@@ -36,10 +36,10 @@ public class LoginClServlet extends HttpServlet {
             Boolean verifyRs = userDB.getVerifyResult(user);
 
             //get login result and dispatch to jsp to show result
-            if(verifyRs){
+            if(verifyRs==true){
                 request.setAttribute("result","success");
             }
-            if(!verifyRs){
+            if(verifyRs==false){
                 request.setAttribute("result", "fail");
             }
 
