@@ -123,8 +123,8 @@ https://bootsnipp.com/snippets/6Nm2(O)唯一click navbar後會改變頁面內容
 Schedule
 Stage1.
 版面:左邊Nav bar為留言板/修改個人資料/登出
-1.註冊登入  9/10
-2.顯示留言板(誰/內容/時候)9/24
+1.註冊登入  9/10  
+2.顯示留言板(誰/內容/時候)9/24  (9/13完成)
 3.新增留言 9/31
 4.修改留言 10/7
  (用html的read only元件先設定,再用jQuery改read only的屬性成為可編輯)
@@ -172,6 +172,16 @@ Stage2.
   因為foerign key跟連過去talbe的primary key要一樣類型
   所以將userName改名以及換成unique Key
 8.user_list還要加入uID這個值當作primarykey供作查詢功能時用
+
+9/13
+1.顯示留言板完成
+
+9/14
+1.開始進行新增留言功能
+
+
+
+
 
 
     
