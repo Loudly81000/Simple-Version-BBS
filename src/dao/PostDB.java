@@ -27,9 +27,9 @@ public class PostDB {
     }
 
     //query user's info by userID(primary key)
-    public ArrayList<ShowPost> showPostInfo(Post_Info post_info){
+    public ArrayList<ShowPost> showPostInfo(){
 
-        ArrayList<ShowPost>post_infoList = null;
+        ArrayList<ShowPost>post_infoList = new ArrayList<>();
 
 
         try {

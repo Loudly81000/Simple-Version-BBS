@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -17,6 +18,8 @@
         @import url(http://netdna.bootstrapcdn.com/font-awesome/3.0.0/css/font-awesome.min.css);
         body{margin-top:20px;}
         .fa-fw {width: 2em;}
+        .testimonial-section {
+            width: 200%;}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -43,17 +46,25 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div id="tb-testimonial" class="testimonial testimonial-default">
-                        <div class="testimonial-section">
-                            Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
-                        </div>
-                        <div class="testimonial-desc">
-                            <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
-                            <div class="testimonial-writer">
-                                <div class="testimonial-writer-name">Zahed Kamal</div>
-                                <div class="testimonial-writer-designation">Front End Developer</div>
-                                <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
+                        <c:forEach var="showPost" items="${showPostArrayList}">
+                            <div class="testimonial-section">
+                                <h4>${showPost.post_title}</h4>
+                                    ${showPost.post_desc}
                             </div>
-                        </div>
+                            <div class="testimonial-desc">
+                                <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
+                                <div class="testimonial-writer">
+                                    <div class="testimonial-writer-name">${showPost.userName}</div>
+                                    <div class="testimonial-writer-designation"><c:if test="${showPost.gender}">
+                                        Male
+                                        </c:if>
+                                        <c:if test="${!showPost.gender}">
+                                        female
+                                        </c:if></div>
+                                    <a href="#" class="testimonial-writer-company">${showPost.post_time}</a>
+                                </div>
+                            </div><br>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

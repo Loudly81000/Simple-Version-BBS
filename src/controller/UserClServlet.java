@@ -1,6 +1,8 @@
 package controller;
 
+import dao.PostDB;
 import dao.UserDB;
+import domain.ShowPost;
 import domain.User;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "UserClServlet")
 public class UserClServlet extends HttpServlet {
@@ -16,6 +19,7 @@ public class UserClServlet extends HttpServlet {
 
         String type = request.getParameter("type");
         String url = "";
+        PostDB postDB = new PostDB();
 
 
         if(type.equals("gotoaddInfo")){
@@ -55,6 +59,8 @@ public class UserClServlet extends HttpServlet {
         }
 
         if(type.equals("gotomanager")){
+            ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+            request.setAttribute("showPostArrayList",showPostArrayList);
             url="/view/manager.jsp";
         }
 

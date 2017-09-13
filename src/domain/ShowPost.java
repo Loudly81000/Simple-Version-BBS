@@ -1,7 +1,9 @@
 package domain;
 
+import java.io.Serializable;
+
 //show post_data for message board
-public class ShowPost {
+public class ShowPost implements Serializable{
 
     private String userName;
     private boolean gender ;
