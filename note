@@ -272,6 +272,7 @@ function writeLorem(e) {
     1.按鈕按下pass表單後清除內容
     2.跳出一個小視窗寫新增成功
   4.登入後到manager.jsp時要將userName也一起帶進來
+  5.要做防盜連防止不登入直接進入留言板
     
     
 
