@@ -179,6 +179,7 @@ Stage2.
 9/14
 1.開始進行新增留言功能
 2.新增留言頁面的按鈕function要查一下裡面Javascript的意思
+  按了不會提交表單
  //
  $(document).ready(function()
     {
@@ -264,6 +265,12 @@ function writeLorem(e) {
 
     } // end function
     
+  3.新增留言按鈕按下後
+    會先提出表單給Servlet新增完畢後會回傳一個新增結果
+    結果是要傳回本來新增按鈕右邊的頁面
+    想要的效果有:
+    1.按鈕按下pass表單後清除內容
+    2.跳出一個小視窗寫新增成功
     
 
 
