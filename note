@@ -123,8 +123,8 @@ https://bootsnipp.com/snippets/6Nm2(O)唯一click navbar後會改變頁面內容
 Schedule
 Stage1.
 版面:左邊Nav bar為留言板/修改個人資料/登出
-1.註冊登入  9/10
-2.顯示留言板(誰/內容/時候)9/24
+1.註冊登入  9/10  
+2.顯示留言板(誰/內容/時候)9/24  (9/13完成)
 3.新增留言 9/31
 4.修改留言 10/7
  (用html的read only元件先設定,再用jQuery改read only的屬性成為可編輯)
@@ -172,6 +172,115 @@ Stage2.
   因為foerign key跟連過去talbe的primary key要一樣類型
   所以將userName改名以及換成unique Key
 8.user_list還要加入uID這個值當作primarykey供作查詢功能時用
+
+9/13
+1.顯示留言板完成
+
+9/14
+1.開始進行新增留言功能
+2.新增留言頁面的按鈕function要查一下裡面Javascript的意思
+  按了不會提交表單
+ //
+ $(document).ready(function()
+    {
+        var navItems = $('.admin-menu li > a');
+        var navListItems = $('.admin-menu li');
+        var allWells = $('.admin-content');
+        var allWellsExceptFirst = $('.admin-content:not(:first)');
+
+        allWellsExceptFirst.hide();
+        navItems.click(function(e)
+        {
+            e.preventDefault();
+            navListItems.removeClass('active');
+            $(this).closest('li').addClass('active');
+
+            allWells.hide();
+            var target = $(this).attr('data-target-id');
+            $('#' + target).show();
+        });
+    });
+//write comment
+function writeComment(e) {
+        // check to see if they didn't fill in anything
+        if ($.trim(document.frmComment.txtComment.value).length == 0) {
+            alert('Please enter  some text.');
+            document.frmComment.txtComment.value = ''; // clear any spaces
+            $('#txtComment').focus();
+            return; // exit function
+        }
+
+
+        // required to hide first, in order to show later
+        $("#comment").hide();
+        $("#txtComment").hide();
+        $("#txtCommentHere").hide();
+
+        var s = document.frmComment.txtComment.value;
+
+        $("#txtComment").fadeIn(1000);
+
+        // write out to to textarea, with delay of 1,000ms (1 second)
+        document.getElementById('txtCommentHere').innerHTML = s;
+        $("#txtCommentHere").fadeIn(1000);
+
+        // write out to to <div id="comment"> , with delay of 2,000ms (2 second)
+        document.getElementById('comment').innerHTML = s;
+        $("#comment").fadeIn(2000);
+
+
+        return false;
+    }
+
+function writeLorem(e) {
+        var s; // string
+
+        if ($('#chkLorem').is(':checked')) {
+
+            // required to hide first, in order to show later
+            $("#comment").hide();
+            $("#txtCommentHere").hide();
+
+            s = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in posuere nisi. Cras mi eros, blandit eget eros in, blandit vulputate sem. Morbi in tincidunt magna, sed tincidunt turpis. Integer. ';
+
+            document.frmComment.txtComment.value = s;
+
+            // write out to to textarea, with delay of 1,000ms (1 second)
+            document.getElementById('txtCommentHere').innerHTML = s;
+            $("#txtCommentHere").fadeIn(1000);
+
+            // write out to to <div id="comment"> , with delay of 2,000ms (2 second)
+            document.getElementById('comment').innerHTML = s;
+            $("#comment").fadeIn(2000);
+
+
+        } else {
+
+            document.frmComment.txtComment.value = ' ';
+
+            $('#txtComment').focus();
+
+
+        } // end if
+
+    } // end function
+    
+  3.新增留言按鈕按下後
+    會先提出表單給Servlet新增完畢後會回傳一個新增結果
+    結果是要傳回本來新增按鈕右邊的頁面
+    想要的效果有:
+    1.按鈕按下pass表單後清除內容
+    2.跳出一個小視窗寫新增成功
+    想到可以在本來的write comment底下寫上self.location:url
+    看能不能傳表單+跳出小視窗(alert?)
+  4.登入後到manager.jsp時要將userName也一起帶進來
+  5.要做防盜連防止不登入直接進入留言板
+    
+    
+
+
+
+
 
 
     
