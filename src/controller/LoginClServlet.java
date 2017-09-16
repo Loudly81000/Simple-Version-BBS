@@ -1,6 +1,8 @@
 package controller;
 
+import dao.PostDB;
 import dao.UserDB;
+import domain.ShowPost;
 import domain.User;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "LoginClServlet")
 public class LoginClServlet extends HttpServlet {
@@ -37,13 +40,16 @@ public class LoginClServlet extends HttpServlet {
 
             //get login result and dispatch to jsp to show result
             if(verifyRs==true){
-                request.setAttribute("result","success");
+                PostDB postDB = new PostDB();
+                request.setAttribute("userName",userName);
+                ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+                request.setAttribute("showPostArrayList",showPostArrayList);
+                url="/view/manager.jsp";
             }
             if(verifyRs==false){
                 request.setAttribute("result", "fail");
+                url="/view/login/loginResult.jsp";
             }
-
-            url="/view/login/loginResult.jsp";
         }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);

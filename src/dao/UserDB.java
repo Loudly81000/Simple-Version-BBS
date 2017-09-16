@@ -56,7 +56,7 @@ public class UserDB {
 
 
     //query user's info by userID(primary key)
-    public User queryByuserID(User user){
+    public User queryByuserName(User user){
 
         User re = null;
 
@@ -78,7 +78,9 @@ public class UserDB {
                 String email = rs.getString(3);
                 String my_desc = rs.getString(4);
                 Boolean gender = rs.getBoolean(5);
+                int userID = rs.getInt(6);
                 re = new User(userName, password, email, my_desc, gender);
+                re.setUserID(userID);
             }
 
         }catch(SQLException e){
@@ -99,8 +101,8 @@ public class UserDB {
     public Boolean getVerifyResult(User user){
 
         Boolean verifyResult = false;
-        User queryResultByuserID = queryByuserID(user);
-        String password = queryResultByuserID.getPassword();
+        User queryResultByuserName = queryByuserName(user);
+        String password = queryResultByuserName.getPassword();
         if(password.equals(user.getPassword())){
             verifyResult = true;
         }

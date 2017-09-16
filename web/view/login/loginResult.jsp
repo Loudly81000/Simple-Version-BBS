@@ -13,10 +13,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-<c:if test="${result == 'success'}">
-    <h1>${result}</h1>
-    <h2><a href="/UserClServlet?type=gotomanager">go to your webboard manager</a></h2>
-</c:if>
 <c:if test="${result =='fail'}">
     <h1>failed!</h1>
     <h2><a href="/LoginClServlet?type=gotologinView">return to last page</a></h2>

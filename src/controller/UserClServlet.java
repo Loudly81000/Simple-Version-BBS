@@ -2,6 +2,7 @@ package controller;
 
 import dao.PostDB;
 import dao.UserDB;
+import domain.Post_Info;
 import domain.ShowPost;
 import domain.User;
 
@@ -20,7 +21,7 @@ public class UserClServlet extends HttpServlet {
         String type = request.getParameter("type");
         String url = "";
         PostDB postDB = new PostDB();
-
+        UserDB userDB = new UserDB();
 
         if(type.equals("gotoaddInfo")){
             url = "/view/addUser/addInfo.jsp";
@@ -50,7 +51,6 @@ public class UserClServlet extends HttpServlet {
             }
 
             //pass value to db
-            UserDB userDB = new UserDB();
             User user = new User(userName, password, email, my_desc, gender);
             Boolean result = userDB.insert(user);
             request.setAttribute("result", result);
@@ -63,6 +63,32 @@ public class UserClServlet extends HttpServlet {
             request.setAttribute("showPostArrayList",showPostArrayList);
             url="/view/manager.jsp";
         }
+
+        if(type.equals("insertPost")){
+            //Step 1.
+            // get userID by userName
+            String userName= request.getParameter("userName");
+            User user = new User();
+            user.setUserName(userName);
+            User reUser = userDB.queryByuserName(user);
+            int userID = reUser.getUserID();
+
+            //Step 2.
+            // get post info from form and initialize
+            // Post_Info object to insert value to post_list table
+            String post_title = request.getParameter("post_title");
+            String post_desc = request.getParameter("post_desc");
+            Post_Info post_info = new Post_Info(post_title, post_desc);
+            post_info.setUid(userID);
+
+            //Step 3. insertInfo and set uid
+
+
+
+
+           //return to manager.jsp and activate alert"update message successfully"
+        }
+
 
         getServletContext().getRequestDispatcher(url).forward(request, response);
 

@@ -12,6 +12,8 @@ public class Post_Info implements Serializable {
     private String post_desc;
     private int post_id;
     private String post_time;
+    private int uid; //foerign key connect to user_list table
+
 
     public String getLocalDateTimeStr() {
         return post_time;
@@ -52,6 +54,14 @@ public class Post_Info implements Serializable {
 
     public int getPost_id() {
         return post_id;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     //getLocalDateTime methodi: time to String

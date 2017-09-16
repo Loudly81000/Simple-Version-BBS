@@ -75,4 +75,46 @@ public class PostDB {
         return post_infoList;
     }
 
+    public Boolean insertPostInfo(Post_Info post_Info){
+
+        Boolean result;
+
+        try{
+
+            Class.forName("com.mysql.jdbc.Driver");
+            //Step1 getConnection java-DB
+            dbConnection = getDbConnection();
+
+            //Step2 send sql to PreparedStatement
+            sql = "INSERT INTO post_list (post_title, post_desc, post_time, uid)" +
+                    " VALUES (?, ?, ?, ?) ";
+
+            PreparedStatement PreStat = dbConnection.prepareStatement(sql);
+            PreStat.setString(1,post_Info.getPost_title());
+            PreStat.setString(2,post_Info.getPost_desc());
+            PreStat.setString(3,post_Info.getPost_time());
+            PreStat.setInt(4, post_Info.getUid());
+
+            PreStat.execute();
+            result = true;
+
+        }catch(SQLException e) {
+            e.printStackTrace();
+            result = false;
+        }catch(ClassNotFoundException e){
+            e.printStackTrace();
+            result = false;
+        }finally {
+            try {
+                dbConnection.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+
+
+
 }
