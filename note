@@ -125,7 +125,7 @@ Stage1.
 版面:左邊Nav bar為留言板/修改個人資料/登出
 1.註冊登入  9/10  
 2.顯示留言板(誰/內容/時候)9/24  (9/13完成)
-3.新增留言 9/31
+3.新增留言 9/31 (9/18完成)
 4.修改留言 10/7
  (用html的read only元件先設定,再用jQuery改read only的屬性成為可編輯)
 
@@ -276,7 +276,11 @@ function writeLorem(e) {
   4.登入後到manager.jsp時要將userName也一起帶進來
   5.要做防盜連防止不登入直接進入留言板
     
-    
+9/18
+完成新增留言
+但Javascript的function沒有啟動
+沒有填東西時不會跳出alert警告使用者未填入資訊
+以及在提出表單後重新到manager.jsp時navbar不知道怎麼導到write comment + 跳出alert"新增成功"
 
 
 
