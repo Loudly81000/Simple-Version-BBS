@@ -85,17 +85,18 @@
                     Please write title&comment in following space.
 
                     <!-- NOTE: TB3 form width default is 100%, so they expan to your <div> -->
-                    <form name="frmComment" id="frmComment" action="/UserClServlet?type=insertPost">
+                    <form name="frmComment" id="frmComment" action="/UserClServlet?type=insertPost" method="post" onsubmit="writeComment()">
                         <label for="txtComment">Please input title here:</label>
-                        <input type="text" name="post_title" id="txtComment" class="form-control" placeholder="Title:" required>
+                        <input type="text" name="post_title" id="txtComment" class="form-control" placeholder="Title:" >
                         <br>
                         <p>
                             Write a comment
                         </p>
 
-                        <textarea id="txtCommentHere" class="form-control" rows="3" name="post_desc" required></textarea>
+                        <textarea id="txtCommentHere" class="form-control" rows="3" name="post_desc" ></textarea>
                         <hr>
-                        <button type="button" class="btn btn-success" value="Submit" onclick="writeComment()"></button>
+                        <%--<button type="button" class="btn btn-success" value="Submit" onclick="writeComment()">Submit</button>--%>
+                        <input type="submit" class="btn btn-success" value="Submit" >
                         <input type="hidden" name="userName" value="${userName}" >
                     </form>
 
@@ -136,28 +137,44 @@
             var target = $(this).attr('data-target-id');
             $('#' + target).show();
         });
+
+        //if servlet pass write comment result, receive it and
+        //go to write comment page
+        var result = <%=session.getAttribute("result")%>
+        if(result=="success"){
+            var success = $(navItems).attr('forms');
+            $('#' + success).show();
+            alert("posted successfully");
+        }
+        if(result=="fail"){
+            var fail = $(navItems).attr('forms');
+            $('#' + fail).show();
+            alert("posted unsuccessfully");
+        }
+
     });
 
     function writeComment(){
 
-        var post_title = document.getElementById("post_title");
-        var post_desc = document.getElementById("post_desc")
-        if($.trim(document.post_title.value).lengt==0){
+        var post_title = document.getElementById("txtComment");
+        var post_desc = document.getElementById("txtCommentHere")
+        if(document.post_title.value == ""){
             alert("please enter title")
             $('#txtComment').focus();
-            return;
+            return false;
         }
 
-        if($.trim(document.post_desc.value).length==0){
+        if(document.post_desc.value == ""){
             alert("please enter message")
             $('#txtCommentHere').focus();
-            return;
+            return false;
         }
 
-        var frmComment = document.getElementById("frmComment");
-        frmComment.submit();
+        document.getElementById("frmComment").submit();
 
     }
+
+
 
 </script>
 

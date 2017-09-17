@@ -82,10 +82,19 @@ public class UserClServlet extends HttpServlet {
             post_info.setUid(userID);
 
             //Step 3. insertInfo and set uid
+            Boolean result = postDB.insertPostInfo(post_info);
 
+            if(result){
+                request.setAttribute("result","success");
+            }
+            if(!result){
+                request.setAttribute("result","fail");
+            }
 
-
-
+            request.setAttribute("userName",userName);
+            ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+            request.setAttribute("showPostArrayList",showPostArrayList);
+            url = "/view/manager.jsp";
            //return to manager.jsp and activate alert"update message successfully"
         }
 
