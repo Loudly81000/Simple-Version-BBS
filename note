@@ -282,6 +282,19 @@ function writeLorem(e) {
 沒有填東西時不會跳出alert警告使用者未填入資訊
 以及在提出表單後重新到manager.jsp時navbar不知道怎麼導到write comment + 跳出alert"新增成功"
 
+9/19
+編輯留言
+step1.先取得userName(登入時取得)
+step2.show user的資訊(要限定登入的user的內容)
+step3.做出編輯留言的按鈕(本來read only改成可以寫)
+step3.最後提出
+
+
+
+
+
+
+
 
 
 
