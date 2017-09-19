@@ -23,6 +23,7 @@ public class UserClServlet extends HttpServlet {
         PostDB postDB = new PostDB();
         UserDB userDB = new UserDB();
 
+
         if(type.equals("gotoaddInfo")){
             url = "/view/addUser/addInfo.jsp";
         }
@@ -59,6 +60,8 @@ public class UserClServlet extends HttpServlet {
         }
 
         if(type.equals("gotomanager")){
+
+            //show messge board page
             ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
             request.setAttribute("showPostArrayList",showPostArrayList);
             url="/view/manager.jsp";
@@ -97,6 +100,24 @@ public class UserClServlet extends HttpServlet {
             url = "/view/manager.jsp";
            //return to manager.jsp and activate alert"update message successfully"
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         getServletContext().getRequestDispatcher(url).forward(request, response);

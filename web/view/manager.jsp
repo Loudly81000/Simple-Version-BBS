@@ -48,22 +48,22 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div id="tb-testimonial" class="testimonial testimonial-default">
-                        <c:forEach var="showPost" items="${showPostArrayList}">
+                        <c:forEach var="editPost" items="${showPostArrayList}">
                             <div class="testimonial-section">
-                                <h4>${showPost.post_title}</h4>
-                                    ${showPost.post_desc}
+                                <h4>${editPost.post_title}</h4>
+                                    ${editPost.post_desc}
                             </div>
                             <div class="testimonial-desc">
                                 <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
                                 <div class="testimonial-writer">
-                                    <div class="testimonial-writer-name">${showPost.userName}</div>
-                                    <div class="testimonial-writer-designation"><c:if test="${showPost.gender}">
+                                    <div class="testimonial-writer-name">${editPost.userName}</div>
+                                    <div class="testimonial-writer-designation"><c:if test="${editPost.gender}">
                                         Male
                                         </c:if>
-                                        <c:if test="${!showPost.gender}">
+                                        <c:if test="${!editPost.gender}">
                                         female
                                         </c:if></div>
-                                    <a href="#" class="testimonial-writer-company">${showPost.post_time}</a>
+                                    <a href="#" class="testimonial-writer-company">${editPost.post_time}</a>
                                 </div>
                             </div><br>
                         </c:forEach>
@@ -85,7 +85,7 @@
                     Please write title&comment in following space.
 
                     <!-- NOTE: TB3 form width default is 100%, so they expan to your <div> -->
-                    <form name="frmComment" id="frmComment" action="/UserClServlet?type=insertPost" method="post" onsubmit="writeComment()">
+                    <form name="frmComment" id="frmComment" action="/UserClServlet?type=insertPost" method="post" >
                         <label for="txtComment">Please input title here:</label>
                         <input type="text" name="post_title" id="txtComment" class="form-control" placeholder="Title:" >
                         <br>
@@ -96,7 +96,7 @@
                         <textarea id="txtCommentHere" class="form-control" rows="3" name="post_desc" ></textarea>
                         <hr>
                         <%--<button type="button" class="btn btn-success" value="Submit" onclick="writeComment()">Submit</button>--%>
-                        <input type="submit" class="btn btn-success" value="Submit" >
+                        <input type="submit" class="btn btn-success" value="Submit" id="submit">
                         <input type="hidden" name="userName" value="${userName}" >
                     </form>
 
@@ -110,7 +110,31 @@
             </div><!--./row -->
         </div>
         <div class="col-md-9 well admin-content" id="table">
-            Table
+            <div class="row">
+                <div class="col-sm-6">
+                    <div id="tb-testimonial2" class="testimonial testimonial-default">
+                        <c:forEach var="editPost" items="${editPostArrayList}">
+                            <div class="testimonial-section">
+                                <h4>${editPost.post_title}</h4>
+                                    ${editPost.post_desc}
+                            </div>
+                            <div class="testimonial-desc">
+                                <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
+                                <div class="testimonial-writer">
+                                    <div class="testimonial-writer-name">${editPost.userName}</div>
+                                    <div class="testimonial-writer-designation"><c:if test="${editPost.gender}">
+                                        Male
+                                    </c:if>
+                                        <c:if test="${!editPost.gender}">
+                                            female
+                                        </c:if></div>
+                                    <a href="#" class="testimonial-writer-company">${editPost.post_time}</a>
+                                </div>
+                            </div><br>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -137,44 +161,100 @@
             var target = $(this).attr('data-target-id');
             $('#' + target).show();
         });
-
-        //if servlet pass write comment result, receive it and
-        //go to write comment page
-        var result = <%=session.getAttribute("result")%>
-        if(result=="success"){
-            var success = $(navItems).attr('forms');
-            $('#' + success).show();
-            alert("posted successfully");
-        }
-        if(result=="fail"){
-            var fail = $(navItems).attr('forms');
-            $('#' + fail).show();
-            alert("posted unsuccessfully");
-        }
-
     });
 
-    function writeComment(){
+        //        $( "form" ).submit(function( event ) {
+//
+//            var post_title = document.getElementById("txtComment");
+//            var post_desc = document.getElementById("txtCommentHere")
+//
+//          if(document.post_title.value == ""){
+//            alert("please enter title")
+//              $('#txtComment').focus();
+//              return false
+//          }
+//        if(document.post_desc.value == ""){
+//            alert("please enter message")
+//            $('#txtCommentHere').focus();
+//            return false
+//        }
+//
+//            document.getElementById("frmComment").submit();
+//
+//        });
 
-        var post_title = document.getElementById("txtComment");
-        var post_desc = document.getElementById("txtCommentHere")
-        if(document.post_title.value == ""){
-            alert("please enter title")
-            $('#txtComment').focus();
-            return false;
-        }
 
-        if(document.post_desc.value == ""){
-            alert("please enter message")
-            $('#txtCommentHere').focus();
-            return false;
-        }
+//        $("form").submit(function(){
+//            alert("Submitted");
+//        });
 
-        document.getElementById("frmComment").submit();
+//if servlet pass write comment result, receive it and
+//go to write comment page
+        <%--var result = <%=session.getAttribute("result")%>--%>
+        <%--if(result=="success"){--%>
+        <%--var success = $(navItems).attr('forms');--%>
+        <%--$('#' + success).show();--%>
+        <%--alert("posted successfully");--%>
+        <%--}--%>
+        <%--if(result=="fail"){--%>
+        <%--var fail = $(navItems).attr('forms');--%>
+        <%--$('#' + fail).show();--%>
+        <%--alert("posted unsuccessfully");--%>
+        <%--}--%>
 
-    }
+
+
+    //    function writeComment(e){
+    //
+    //
+    //        var post_title = document.getElementById("txtComment");
+    //        var post_desc = document.getElementById("txtCommentHere")
+    //
+    //        if(document.post_title.value == ""){
+    //            alert("please enter title")
+    //            $('#txtComment').focus();
+    //            return false
+    //        }
+    //        else if(document.post_desc.value == ""){
+    //            alert("please enter message")
+    //            $('#txtCommentHere').focus();
+    //            return false
+    //        }else {
+    //            document.getElementById("frmComment").submit();
+    //        }
+    //    }
+
+    //show alert if user doesnt' enter message or title
+    //    $(function(){
+    //        var fsubmit = false;
+    //
+    //        var post_title = document.getElementById("txtComment");
+    //        var post_desc = document.getElementById("txtCommentHere")
+    //
+    //        if(document.post_title.value == ""){
+    //            alert("please enter title")
+    //            $('#txtComment').focus();
+    //            fsubmit = false
+    //        }
+    //
+    //        if(document.post_desc.value == ""){
+    //            alert("please enter message")
+    //            $('#txtCommentHere').focus();
+    //            fsubmit = false
+    //        }
+    //
+    //        $('form').submit(function(e){
+    //            return !fsubmit;
+    //        });
+    //
+    //    });
+
+
+
+
 
 
 
 </script>
+
 

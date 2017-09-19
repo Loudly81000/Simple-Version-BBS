@@ -15,6 +15,9 @@ import java.util.ArrayList;
 
 @WebServlet(name = "LoginClServlet")
 public class LoginClServlet extends HttpServlet {
+
+    static String loginUser;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String type = request.getParameter("type");
@@ -32,7 +35,7 @@ public class LoginClServlet extends HttpServlet {
             String userName = request.getParameter("userName");
             String password = request.getParameter("password");
 
-            //encapsulation & call method to verify
+            //encapsulate info to User object and verify
             User user = new User();
             user.setUserName(userName);
             user.setPassword(password);
@@ -42,9 +45,17 @@ public class LoginClServlet extends HttpServlet {
             if(verifyRs==true){
                 PostDB postDB = new PostDB();
                 request.setAttribute("userName",userName);
+
+                //for showing message board
                 ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
                 request.setAttribute("showPostArrayList",showPostArrayList);
+
+                //for showing edit message page
+                ArrayList<ShowPost> editPostArrayList = postDB.EditPostInfo(user);
+                request.setAttribute("editPostArrayList", editPostArrayList);
+
                 url="/view/manager.jsp";
+
             }
             if(verifyRs==false){
                 request.setAttribute("result", "fail");
