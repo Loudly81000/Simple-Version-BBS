@@ -94,31 +94,18 @@ public class UserClServlet extends HttpServlet {
                 request.setAttribute("result","fail");
             }
 
+            //for showing message board
             request.setAttribute("userName",userName);
             ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
             request.setAttribute("showPostArrayList",showPostArrayList);
+
+            //for showing edit message page
+            ArrayList<ShowPost> editPostArrayList = postDB.EditPostInfo(user);
+            request.setAttribute("editPostArrayList", editPostArrayList);
+
+            //return to manager.jsp and activate alert"update message successfully"
             url = "/view/manager.jsp";
-           //return to manager.jsp and activate alert"update message successfully"
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         getServletContext().getRequestDispatcher(url).forward(request, response);
 

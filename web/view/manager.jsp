@@ -13,6 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/CSSforJSP/manager.css" type="text/css"/>
     <style>
         @import url(http://netdna.bootstrapcdn.com/font-awesome/3.0.0/css/font-awesome.min.css);
@@ -128,7 +131,8 @@
                                         <c:if test="${!editPost.gender}">
                                             female
                                         </c:if></div>
-                                    <a href="#" class="testimonial-writer-company">${editPost.post_time}</a>
+                                    <a class="testimonial-writer-company" >${editPost.post_time}</a>
+                                        <button type="button" class="btn btn-primary">Edit</button>
                                 </div>
                             </div><br>
                         </c:forEach>
