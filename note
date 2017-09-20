@@ -287,7 +287,14 @@ function writeLorem(e) {
 step1.先取得userName(登入時取得)
 step2.show user的資訊(要限定登入的user的內容)
 step3.做出編輯留言的按鈕(本來read only改成可以寫)
-step3.最後提出
+step4.最後提出
+
+9/21
+message board的時間沒顯示時分秒,用timestamp解決
+剩下step3 + step4
+step3的textarea可以用
+1.servlet傳送arraylist的長度再用迴圈解決
+2.直接在jsp用迴圈或是++解決
 
 
 
