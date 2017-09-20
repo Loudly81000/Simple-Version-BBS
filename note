@@ -292,7 +292,9 @@ step4.最後提出
 9/21
 message board的時間沒顯示時分秒,用timestamp解決
 剩下step3 + step4
-
+step3的textarea可以用
+1.servlet傳送arraylist的長度再用迴圈解決
+2.直接在jsp用迴圈或是++解決
 
 
 
