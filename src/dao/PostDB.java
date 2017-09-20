@@ -5,6 +5,7 @@ import domain.ShowPost;
 import domain.User;
 
 import java.sql.*;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -143,14 +144,16 @@ public class PostDB {
                 String post_title = rs.getString(3);
 
                 //get datetime from db and convert to String
-                Date pTime = rs.getDate(4);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String  post_time= sdf.format(pTime);
+                Timestamp timestamp = rs.getTimestamp(4);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String  post_time= dateFormat.format(timestamp);
+                System.out.println(timestamp);
 
                 String post_desc = rs.getString(5);
                 ShowPost showPost = new ShowPost(userName, gender, post_title, post_time, post_desc);
                 post_infoList.add(showPost);
             }
+
 
         }catch(SQLException e){
             e.printStackTrace();

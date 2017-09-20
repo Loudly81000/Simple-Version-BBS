@@ -115,11 +115,13 @@
         <div class="col-md-9 well admin-content" id="table">
             <div class="row">
                 <div class="col-sm-6">
-                    <div id="tb-testimonial2" class="testimonial testimonial-default">
-                        <c:forEach var="editPost" items="${editPostArrayList}">
+                    <div id="tb-testimonial2" class="testimonial testimonial-default"><%int i=1;%>
+                        <c:forEach var="editPost"  items="${editPostArrayList}">
                             <div class="testimonial-section">
+                                <form action="" method="post">
                                 <h4>${editPost.post_title}</h4>
-                                    ${editPost.post_desc}
+                                <textarea  name="post_desc"  rows="3" readonly="readonly" id='post<%++i;%>'>${editPost.post_desc}</textarea>
+                                </form>
                             </div>
                             <div class="testimonial-desc">
                                 <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
@@ -132,7 +134,10 @@
                                             female
                                         </c:if></div>
                                     <a class="testimonial-writer-company" >${editPost.post_time}</a>
-                                        <button type="button" class="btn btn-primary">Edit</button>
+                                        <button type="button" class="btn btn-primary"
+                                                style="margin-left: 50px" onclick="function post() {
+                                          document.getElementById('post<%Integer.toString(i);%>').removeAttribute('readonly')
+                                        }">Edit</button>
                                 </div>
                             </div><br>
                         </c:forEach>
@@ -166,6 +171,10 @@
             $('#' + target).show();
         });
     });
+
+//    document.getElementById("edit").onclick = function(){
+//        document.getElementById("post").removeAttribute("readonly")
+//    }
 
         //        $( "form" ).submit(function( event ) {
 //
@@ -252,12 +261,6 @@
     //        });
     //
     //    });
-
-
-
-
-
-
 
 </script>
 
