@@ -296,6 +296,10 @@ step3的textarea可以用
 1.servlet傳送arraylist的長度再用迴圈解決
 2.直接在jsp用迴圈或是++解決
 
+9/23
+step3的onclick button動不了
+
+
 
 
 
