@@ -298,6 +298,14 @@ step3的textarea可以用
 
 9/23
 step3的onclick button動不了
+測試以下無效
+1.加上return false,無效
+2.在onclick="function post()"裡面最後沒加上};
+ 補上,還是無效
+3.在<head>裡面設置<meta content type=text/javascript
+  還是無效
+  
+
 
 
 
