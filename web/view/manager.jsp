@@ -25,6 +25,7 @@
             width: 200%;}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript"></script>
 </head>
 <body>
 <div class="container">
@@ -36,6 +37,7 @@
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="pages"><i class="fa fa-file-o fa-fw"></i>Message Board</a></li>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="forms"><i class="fa fa-tasks fa-fw"></i>Write Comment</a></li>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="table"><i class="fa fa-table fa-fw"></i>Edit Comment</a></li>
+                    <li><a href="http://www.jquery2dotnet.com" data-target-id="settings"><i class="fa fa-cogs fa-fw"></i>Settings</a></li>
             </ul>
         </div>
         <div class="col-md-9 well admin-content" id="home">
@@ -120,7 +122,7 @@
                             <div class="testimonial-section">
                                 <form action="" method="post">
                                 <h4>${editPost.post_title}</h4>
-                                <textarea  name="post_desc"  rows="3" readonly="readonly" id='post<%++i;%>'>${editPost.post_desc}</textarea>
+                                <textarea  name="post_desc"  rows="3" readonly id="<%= i%>">${editPost.post_desc}</textarea>
                                 </form>
                             </div>
                             <div class="testimonial-desc">
@@ -135,15 +137,17 @@
                                         </c:if></div>
                                     <a class="testimonial-writer-company" >${editPost.post_time}</a>
                                         <button type="button" class="btn btn-primary"
-                                                style="margin-left: 50px" onclick="function post() {
-                                          document.getElementById('post<%Integer.toString(i);%>').removeAttribute('readonly')
-                                        }">Edit</button>
+                                                style="margin-left: 50px" onclick="onClick(<%= i%>)">Edit</button>
                                 </div>
                             </div><br>
+                            <%++i;%>
                         </c:forEach>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-md-9 well admin-content" id="settings">
+
         </div>
     </div>
 </div>
@@ -170,7 +174,16 @@
             var target = $(this).attr('data-target-id');
             $('#' + target).show();
         });
+
     });
+
+
+    function onClick(id){
+        document.getElementById(id).removeAttribute('readonly');
+    };
+
+
+
 
 //    document.getElementById("edit").onclick = function(){
 //        document.getElementById("post").removeAttribute("readonly")
