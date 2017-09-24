@@ -312,6 +312,28 @@ step3 完成,失敗原因可能有
 這兩點我記得沒搞錯,現在還不知道為何會失敗
 
 
+Login完成後塞一個變數到session(userID??)
+insert的頁面沒登入要導到登入頁面
+每一個頁面都不能有這個狀況
+
+10/7
+1.EDIT/Delete
+2.Session
+
+10??
+Ajax發送,Write Comment
+10/?
+留言分頁
+
+
+
+
+
+
+
+
+
+
 
     
     
