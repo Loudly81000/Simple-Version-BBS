@@ -305,9 +305,30 @@ step3的onclick button動不了
 3.在<head>裡面設置<meta content type=text/javascript
   還是無效
   
+9/24
+step3 完成,失敗原因可能有
+1.chrome一直跑到暫存的檔案
+2.function裡面應該要使用傳入的id而不是字串
+這兩點我記得沒搞錯,現在還不知道為何會失敗
 
 
+Login完成後塞一個變數到session(userID??)
+insert的頁面沒登入要導到登入頁面
+每一個頁面都不能有這個狀況
 
+10/11 (要請假)
+1.EDIT/Delete
+2.Session
+
+10??
+Ajax發送,Write Comment
+10/?
+留言分頁
+
+
+9/25
+將_全都修改(O)
+發現如果輸入中文留言會亂碼
 
 
 
