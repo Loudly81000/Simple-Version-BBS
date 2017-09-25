@@ -2,7 +2,8 @@ package controller;
 
 import dao.PostDB;
 import dao.UserDB;
-import domain.Post_Info;
+import domain.PostInfo;
+import domain.PostInfo;
 import domain.ShowPost;
 import domain.User;
 
@@ -40,7 +41,7 @@ public class UserClServlet extends HttpServlet {
             String userName = request.getParameter("userName");
             String password = request.getParameter("password");
             String email = request.getParameter("email");
-            String my_desc = request.getParameter("my_desc");
+            String myDesc = request.getParameter("myDesc");
             String morf = request.getParameter("gender");
             Boolean gender;
             System.out.println(userName);
@@ -52,7 +53,7 @@ public class UserClServlet extends HttpServlet {
             }
 
             //pass value to db
-            User user = new User(userName, password, email, my_desc, gender);
+            User user = new User(userName, password, email, myDesc, gender);
             Boolean result = userDB.insert(user);
             request.setAttribute("result", result);
             url = "/view/addUser/addInfoResult.jsp";
@@ -79,13 +80,13 @@ public class UserClServlet extends HttpServlet {
             //Step 2.
             // get post info from form and initialize
             // Post_Info object to insert value to post_list table
-            String post_title = request.getParameter("post_title");
-            String post_desc = request.getParameter("post_desc");
-            Post_Info post_info = new Post_Info(post_title, post_desc);
-            post_info.setUid(userID);
+            String postTitle = request.getParameter("postTitle");
+            String postDesc = request.getParameter("postDesc");
+            PostInfo postInfo = new PostInfo(postTitle, postDesc);
+            postInfo.setUid(userID);
 
             //Step 3. insertInfo and set uid
-            Boolean result = postDB.insertPostInfo(post_info);
+            Boolean result = postDB.insertPostInfo(postInfo);
 
             if(result){
                 request.setAttribute("result","success");

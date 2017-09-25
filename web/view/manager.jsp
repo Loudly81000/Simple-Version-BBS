@@ -55,8 +55,8 @@
                     <div id="tb-testimonial" class="testimonial testimonial-default">
                         <c:forEach var="editPost" items="${showPostArrayList}">
                             <div class="testimonial-section">
-                                <h4>${editPost.post_title}</h4>
-                                    ${editPost.post_desc}
+                                <h4>${editPost.postTitle}</h4>
+                                    ${editPost.postDesc}
                             </div>
                             <div class="testimonial-desc">
                                 <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
@@ -68,7 +68,7 @@
                                         <c:if test="${!editPost.gender}">
                                         female
                                         </c:if></div>
-                                    <a href="#" class="testimonial-writer-company">${editPost.post_time}</a>
+                                    <a href="#" class="testimonial-writer-company">${editPost.postTime}</a>
                                 </div>
                             </div><br>
                         </c:forEach>
@@ -92,13 +92,13 @@
                     <!-- NOTE: TB3 form width default is 100%, so they expan to your <div> -->
                     <form name="frmComment" id="frmComment" action="/UserClServlet?type=insertPost" method="post" >
                         <label for="txtComment">Please input title here:</label>
-                        <input type="text" name="post_title" id="txtComment" class="form-control" placeholder="Title:" >
+                        <input type="text" name="postTitle" id="txtComment" class="form-control" placeholder="Title:" >
                         <br>
                         <p>
                             Write a comment
                         </p>
 
-                        <textarea id="txtCommentHere" class="form-control" rows="3" name="post_desc" ></textarea>
+                        <textarea id="txtCommentHere" class="form-control" rows="3" name="postDesc"></textarea>
                         <hr>
                         <%--<button type="button" class="btn btn-success" value="Submit" onclick="writeComment()">Submit</button>--%>
                         <input type="submit" class="btn btn-success" value="Submit" id="submit">
@@ -121,8 +121,8 @@
                         <c:forEach var="editPost"  items="${editPostArrayList}">
                             <div class="testimonial-section">
                                 <form action="" method="post">
-                                <h4>${editPost.post_title}</h4>
-                                <textarea  name="post_desc"  rows="3" readonly id="<%= i%>">${editPost.post_desc}</textarea>
+                                <h4>${editPost.postTitle}</h4>
+                                <textarea name="postDesc" rows="3" readonly id="<%= i%>">${editPost.postDesc}</textarea>
                                 </form>
                             </div>
                             <div class="testimonial-desc">
@@ -135,7 +135,7 @@
                                         <c:if test="${!editPost.gender}">
                                             female
                                         </c:if></div>
-                                    <a class="testimonial-writer-company" >${editPost.post_time}</a>
+                                    <a class="testimonial-writer-company" >${editPost.postTime}</a>
                                         <button type="button" class="btn btn-primary"
                                                 style="margin-left: 50px" onclick="onClick(<%= i%>)">Edit</button>
                                 </div>
@@ -181,99 +181,7 @@
     function onClick(id){
         document.getElementById(id).removeAttribute('readonly');
     };
-
-
-
-
-//    document.getElementById("edit").onclick = function(){
-//        document.getElementById("post").removeAttribute("readonly")
-//    }
-
-        //        $( "form" ).submit(function( event ) {
-//
-//            var post_title = document.getElementById("txtComment");
-//            var post_desc = document.getElementById("txtCommentHere")
-//
-//          if(document.post_title.value == ""){
-//            alert("please enter title")
-//              $('#txtComment').focus();
-//              return false
-//          }
-//        if(document.post_desc.value == ""){
-//            alert("please enter message")
-//            $('#txtCommentHere').focus();
-//            return false
-//        }
-//
-//            document.getElementById("frmComment").submit();
-//
-//        });
-
-
-//        $("form").submit(function(){
-//            alert("Submitted");
-//        });
-
-//if servlet pass write comment result, receive it and
-//go to write comment page
-        <%--var result = <%=session.getAttribute("result")%>--%>
-        <%--if(result=="success"){--%>
-        <%--var success = $(navItems).attr('forms');--%>
-        <%--$('#' + success).show();--%>
-        <%--alert("posted successfully");--%>
-        <%--}--%>
-        <%--if(result=="fail"){--%>
-        <%--var fail = $(navItems).attr('forms');--%>
-        <%--$('#' + fail).show();--%>
-        <%--alert("posted unsuccessfully");--%>
-        <%--}--%>
-
-
-
-    //    function writeComment(e){
-    //
-    //
-    //        var post_title = document.getElementById("txtComment");
-    //        var post_desc = document.getElementById("txtCommentHere")
-    //
-    //        if(document.post_title.value == ""){
-    //            alert("please enter title")
-    //            $('#txtComment').focus();
-    //            return false
-    //        }
-    //        else if(document.post_desc.value == ""){
-    //            alert("please enter message")
-    //            $('#txtCommentHere').focus();
-    //            return false
-    //        }else {
-    //            document.getElementById("frmComment").submit();
-    //        }
-    //    }
-
-    //show alert if user doesnt' enter message or title
-    //    $(function(){
-    //        var fsubmit = false;
-    //
-    //        var post_title = document.getElementById("txtComment");
-    //        var post_desc = document.getElementById("txtCommentHere")
-    //
-    //        if(document.post_title.value == ""){
-    //            alert("please enter title")
-    //            $('#txtComment').focus();
-    //            fsubmit = false
-    //        }
-    //
-    //        if(document.post_desc.value == ""){
-    //            alert("please enter message")
-    //            $('#txtCommentHere').focus();
-    //            fsubmit = false
-    //        }
-    //
-    //        $('form').submit(function(e){
-    //            return !fsubmit;
-    //        });
-    //
-    //    });
+    //jQuery $(#)
 
 </script>
 

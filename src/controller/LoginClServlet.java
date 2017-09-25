@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// TODO:@webservlet delete "name="
 @WebServlet(name = "LoginClServlet")
 public class LoginClServlet extends HttpServlet {
 
@@ -42,7 +43,7 @@ public class LoginClServlet extends HttpServlet {
             Boolean verifyRs = userDB.getVerifyResult(user);
 
             //get login result and dispatch to jsp to show result
-            if(verifyRs==true){
+            if(verifyRs == true){
                 PostDB postDB = new PostDB();
                 request.setAttribute("userName",userName);
 
@@ -57,7 +58,7 @@ public class LoginClServlet extends HttpServlet {
                 url="/view/manager.jsp";
 
             }
-            if(verifyRs==false){
+            if(verifyRs == false){
                 request.setAttribute("result", "fail");
                 url="/view/login/loginResult.jsp";
             }

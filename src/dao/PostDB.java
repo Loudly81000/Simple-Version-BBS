@@ -1,6 +1,7 @@
 package dao;
 
-import domain.Post_Info;
+import domain.PostInfo;
+import domain.PostInfo;
 import domain.ShowPost;
 import domain.User;
 
@@ -52,15 +53,15 @@ public class PostDB {
             while(rs.next()){
                 String userName = rs.getString(1);
                 boolean gender = rs.getBoolean(2);
-                String post_title = rs.getString(3);
+                String postTitle = rs.getString(3);
 
                 //get datetime from db and convert to String
                 Date pTime = rs.getDate(4);
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String  post_time= sdf.format(pTime);
+                String  postTime= sdf.format(pTime);
 
-                String post_desc = rs.getString(5);
-                ShowPost showPost = new ShowPost(userName, gender, post_title, post_time, post_desc);
+                String postDesc = rs.getString(5);
+                ShowPost showPost = new ShowPost(userName, gender, postTitle, postTime, postDesc);
                 post_infoList.add(showPost);
             }
 
@@ -76,7 +77,7 @@ public class PostDB {
         return post_infoList;
     }
 
-    public Boolean insertPostInfo(Post_Info post_Info){
+    public Boolean insertPostInfo(PostInfo postInfo){
 
         Boolean result;
 
@@ -91,10 +92,10 @@ public class PostDB {
                     " VALUES (?, ?, ?, ?) ";
 
             PreparedStatement PreStat = dbConnection.prepareStatement(sql);
-            PreStat.setString(1,post_Info.getPost_title());
-            PreStat.setString(2,post_Info.getPost_desc());
-            PreStat.setString(3,post_Info.getPost_time());
-            PreStat.setInt(4, post_Info.getUid());
+            PreStat.setString(1,postInfo.getPostTitle());
+            PreStat.setString(2,postInfo.getPostDesc());
+            PreStat.setString(3,postInfo.getPostTime());
+            PreStat.setInt(4, postInfo.getUid());
 
             PreStat.execute();
             result = true;
@@ -118,7 +119,7 @@ public class PostDB {
     //query user's info by userID(primary key)
     public ArrayList<ShowPost> EditPostInfo(User loginUser){
 
-        ArrayList<ShowPost>post_infoList = new ArrayList<>();
+        ArrayList<ShowPost>postInfoList = new ArrayList<>();
 
 
         try {
@@ -141,17 +142,17 @@ public class PostDB {
             while(rs.next()){
                 String userName = rs.getString(1);
                 boolean gender = rs.getBoolean(2);
-                String post_title = rs.getString(3);
+                String postTitle = rs.getString(3);
 
                 //get datetime from db and convert to String
                 Timestamp timestamp = rs.getTimestamp(4);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String  post_time= dateFormat.format(timestamp);
+                String  postTime= dateFormat.format(timestamp);
                 System.out.println(timestamp);
 
-                String post_desc = rs.getString(5);
-                ShowPost showPost = new ShowPost(userName, gender, post_title, post_time, post_desc);
-                post_infoList.add(showPost);
+                String postDesc = rs.getString(5);
+                ShowPost showPost = new ShowPost(userName, gender, postTitle, postTime, postDesc);
+                postInfoList.add(showPost);
             }
 
 
@@ -164,7 +165,7 @@ public class PostDB {
                 e.printStackTrace();
             }
         }
-        return post_infoList;
+        return postInfoList;
     }
 
 

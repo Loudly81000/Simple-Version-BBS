@@ -36,7 +36,7 @@
                     </label>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" name="my_desc" type="textarea" placeholder="Pls introduce yourself"
+                    <textarea class="form-control" name="myDesc" type="textarea" placeholder="Pls introduce yourself"
                               maxlength="140" rows="7"></textarea>
                     <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
                 </div>

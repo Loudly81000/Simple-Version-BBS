@@ -3,7 +3,6 @@ package dao;
 import domain.User;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class UserDB {
 
@@ -32,7 +31,7 @@ public class UserDB {
                 PreStat.setString(1,user.getUserName());
                 PreStat.setString(2,user.getPassword());
                 PreStat.setString(3,user.getEmail());
-                PreStat.setString(4,user.getMy_desc());
+                PreStat.setString(4,user.getMyDesc());
                 PreStat.setBoolean(5,user.isGender());
 
                 PreStat.execute();
@@ -76,10 +75,10 @@ public class UserDB {
                 String userName = rs.getString(1);
                 String password = rs.getString(2);
                 String email = rs.getString(3);
-                String my_desc = rs.getString(4);
+                String myDesc = rs.getString(4);
                 Boolean gender = rs.getBoolean(5);
                 int userID = rs.getInt(6);
-                re = new User(userName, password, email, my_desc, gender);
+                re = new User(userName, password, email, myDesc, gender);
                 re.setUserID(userID);
             }
 

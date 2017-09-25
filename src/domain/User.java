@@ -7,7 +7,7 @@ public class User implements Serializable {
     private String userName;
     private String password;
     private String email;
-    private String my_desc;
+    private String myDesc;
     private boolean gender;
     //true==male false==female
     private int userID;
@@ -16,11 +16,11 @@ public class User implements Serializable {
 
     }
 
-    public User(String userName, String password, String email, String my_desc, boolean gender) {
+    public User(String userName, String password, String email, String myDesc, boolean gender) {
         this.userName = userName;
         this.password = password;
         this.email = email;
-        this.my_desc = my_desc;
+        this.myDesc = myDesc;
         this.gender = gender;
     }
 
@@ -48,12 +48,12 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getMy_desc() {
-        return my_desc;
+    public String getMyDesc() {
+        return myDesc;
     }
 
-    public void setMy_desc(String my_desc) {
-        this.my_desc = my_desc;
+    public void setMyDesc(String myDesc) {
+        this.myDesc = myDesc;
     }
 
     public boolean isGender() {
