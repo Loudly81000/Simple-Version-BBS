@@ -331,6 +331,13 @@ Ajax發送,Write Comment
 發現如果輸入中文留言會亂碼
 
 
+9/27
+不會將 
+function onClick(id){
+         document.getElementById(id).removeAttribute('readonly');
+};
+改成jQuery
+要花時間把javaScript + jQuery短時間弄懂
 
 
 
