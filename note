@@ -339,6 +339,11 @@ function onClick(id){
 改成jQuery
 要花時間把javaScript + jQuery短時間弄懂
 
+用Session做防盜連
+session壓參數傳到manager.jsp
+沒參數的話就跳回其他頁面
+
+
 
 
 
