@@ -344,6 +344,14 @@ session壓參數傳到manager.jsp
 沒參數的話就跳回其他頁面
 
 
+9/27
+防盜連方法
+1.在manager.jsp用getHeader找reference再判斷是從哪裡轉發
+  如果是從前一個頁面就OK
+  或是用session
+2.如果user想透過url直接用doGet的方式轉跳到manager.jsp
+  就在servlet的doGet將網頁全部轉到初始頁面即可
+
 
 
 
