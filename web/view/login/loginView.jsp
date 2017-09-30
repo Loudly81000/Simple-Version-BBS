@@ -34,6 +34,7 @@
                         <label for="lg_remember">remember</label>
                     </div>
                 </div>
+                <input type="hidden" name="login" value="login">
                 <input type="submit" name="submit" class="login-button" id="submit">
             </div>
             <div class="etc-login-form">

@@ -56,7 +56,7 @@ public class PostDB {
                 String postTitle = rs.getString(3);
 
                 //get datetime from db and convert to String
-                Date pTime = rs.getDate(4);
+                Timestamp pTime = rs.getTimestamp(4);
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String  postTime= sdf.format(pTime);
 

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "UserClServlet")
+@WebServlet("/UserClServlet")
 public class UserClServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -62,10 +62,19 @@ public class UserClServlet extends HttpServlet {
 
         if(type.equals("gotomanager")){
 
-            //show messge board page
-            ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
-            request.setAttribute("showPostArrayList",showPostArrayList);
-            url="/view/manager.jsp";
+            String login = request.getParameter("login");
+
+            if(login == "login") {
+                //show messge board page
+                ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+                request.setAttribute("showPostArrayList", showPostArrayList);
+                url = "/view/manager.jsp";
+            }
+
+            if(login == null || login == ""){
+                url = "/view/wel.jsp";
+            }
+
         }
 
         if(type.equals("insertPost")){

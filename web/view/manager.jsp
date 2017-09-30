@@ -178,10 +178,29 @@
     });
 
 
-    function onClick(id){
-        document.getElementById(id).removeAttribute('readonly');
-    };
-    //jQuery $(#)
+     function onClick(id){
+         document.getElementById(id).removeAttribute('readonly');
+     };
+//    //jQuery $(#)
+
+//    $.fn.onClick=function (id) {
+//        return $(this).onclick(function() {
+//                var id = $('#' + id).get();
+//                id.removeAttribute("readonly");
+//            });
+//    };
+//    $('textarea')
+
+
+    //jQuery object?
+    //DOM object ?
+    //each?
+
+//    $("button").onClick();
+
+
+
+
 
 </script>
 
