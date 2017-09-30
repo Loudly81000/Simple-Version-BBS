@@ -351,6 +351,10 @@ session壓參數傳到manager.jsp
   或是用session
 2.如果user想透過url直接用doGet的方式轉跳到manager.jsp
   就在servlet的doGet將網頁全部轉到初始頁面即可
+  
+9/30
+1.完成LoginClServlet的Sesssion(O)
+2.留言板的留言時間需要顯示時分秒(O)
 
 
 
