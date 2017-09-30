@@ -331,6 +331,30 @@ Ajax發送,Write Comment
 發現如果輸入中文留言會亂碼
 
 
+9/27
+不會將 
+function onClick(id){
+         document.getElementById(id).removeAttribute('readonly');
+};
+改成jQuery
+要花時間把javaScript + jQuery短時間弄懂
+
+用Session做防盜連
+session壓參數傳到manager.jsp
+沒參數的話就跳回其他頁面
+
+
+9/27
+防盜連方法
+1.在manager.jsp用getHeader找reference再判斷是從哪裡轉發
+  如果是從前一個頁面就OK
+  或是用session
+2.如果user想透過url直接用doGet的方式轉跳到manager.jsp
+  就在servlet的doGet將網頁全部轉到初始頁面即可
+  
+9/30
+1.完成LoginClServlet的Sesssion(O)
+2.留言板的留言時間需要顯示時分秒(O)
 
 
 
