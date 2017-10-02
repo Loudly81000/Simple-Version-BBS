@@ -28,6 +28,18 @@
     <script type="text/javascript"></script>
 </head>
 <body>
+<%HttpSession s = request.getSession();
+  String sessionLogin = (String)s.getAttribute("sessionLogin");
+  String url = "";
+  if(sessionLogin != null && !sessionLogin.equals("sessionLogin")){
+           url = "/view/login/loginView.jsp";
+      getServletConfig().getServletContext().getRequestDispatcher(url).forward(request, response);
+  }
+  if(sessionLogin == null){
+      url = "/view/login/loginView.jsp";
+      getServletConfig().getServletContext().getRequestDispatcher(url).forward(request, response);
+  }
+%>
 <div class="container">
     <div class="row">
         <div class="col-md-3">

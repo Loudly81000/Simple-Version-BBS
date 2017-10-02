@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -122,9 +123,41 @@ public class UserClServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-          doPost(request, response);
-    }
 
+        HttpSession session = request.getSession();
+        String sessionLogin = (String)session.getAttribute("sessionLogin");
+        User user = (User)session.getAttribute("user");
+        String referer = request.getHeader("Referer");
+        String url = "";
+        System.out.println(sessionLogin);
+
+        //check whether session is set or not
+        //if set finished -> show message board & editpost page
+        if(sessionLogin !=null && sessionLogin.equals("sessionLogin")){
+
+                UserDB userDB = new UserDB();
+
+                //for showing message board
+                PostDB postDB = new PostDB();
+                ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+                request.setAttribute("showPostArrayList", showPostArrayList);
+
+                //for showing edit message page
+                ArrayList<ShowPost> editPostArrayList = postDB.EditPostInfo(user);
+                request.setAttribute("editPostArrayList", editPostArrayList);
+
+                url = "/view/manager.jsp";
+
+        }
+
+        //if not, return to loggin page
+        if(sessionLogin == null){
+                url="/view/login/loginView.jsp";
+        }
+
+        getServletContext().getRequestDispatcher(url).forward(request, response);
+
+    }
 
 
 }

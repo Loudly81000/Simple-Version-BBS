@@ -168,7 +168,4 @@ public class PostDB {
         return postInfoList;
     }
 
-
-
-
 }
