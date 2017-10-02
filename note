@@ -366,7 +366,7 @@ session壓參數傳到manager.jsp
   另外manager.jsp也會檢查有沒有session
   如果User在沒登入的情況下直接輸入http://localhost8080/view/manager.jsp
   會跳到登入頁面
-2.提出編輯留言
+2.提出編輯留言(O)
   User使用時的步驟
   Step1.
   將資料提出到UserClServlet
@@ -385,6 +385,7 @@ session壓參數傳到manager.jsp
     修改後的資料以及comment的postID後
     call method修改
     之後回傳修改後的資料到manager.jsp
+    
   
   
   
