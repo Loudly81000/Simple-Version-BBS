@@ -104,13 +104,13 @@
                     <!-- NOTE: TB3 form width default is 100%, so they expan to your <div> -->
                     <form name="frmComment" id="frmComment" action="/UserClServlet?type=insertPost" method="post" >
                         <label for="txtComment">Please input title here:</label>
-                        <input type="text" name="postTitle" id="txtComment" class="form-control" placeholder="Title:" >
+                        <input type="text" name="postTitle" id="txtComment" class="form-control" placeholder="Title:" required>
                         <br>
                         <p>
                             Write a comment
                         </p>
 
-                        <textarea id="txtCommentHere" class="form-control" rows="3" name="postDesc"></textarea>
+                        <textarea id="txtCommentHere" class="form-control" rows="3" name="postDesc" required></textarea>
                         <hr>
                         <%--<button type="button" class="btn btn-success" value="Submit" onclick="writeComment()">Submit</button>--%>
                         <input type="submit" class="btn btn-success" value="Submit" id="submit">
@@ -131,11 +131,10 @@
                 <div class="col-sm-6">
                     <div id="tb-testimonial2" class="testimonial testimonial-default"><%int i=1;%>
                         <c:forEach var="editPost"  items="${editPostArrayList}">
+                        <form action="" method="post" action="">
                             <div class="testimonial-section">
-                                <form action="" method="post">
                                 <h4>${editPost.postTitle}</h4>
-                                <textarea name="postDesc" rows="3" readonly id="<%= i%>">${editPost.postDesc}</textarea>
-                                </form>
+                                <textarea name="postDesc" rows="3" readonly id="<%= i%>" >${editPost.postDesc}</textarea>
                             </div>
                             <div class="testimonial-desc">
                                 <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
@@ -150,9 +149,11 @@
                                     <a class="testimonial-writer-company" >${editPost.postTime}</a>
                                         <button type="button" class="btn btn-primary"
                                                 style="margin-left: 50px" onclick="onClick(<%= i%>)">Edit</button>
+                                    <input type="submit" class="btn btn-primary" value="Submit">
                                 </div>
                             </div><br>
                             <%++i;%>
+                        </form>
                         </c:forEach>
                     </div>
                 </div>

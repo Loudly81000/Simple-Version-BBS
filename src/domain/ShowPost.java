@@ -10,6 +10,7 @@ public class ShowPost implements Serializable{
     private String postTitle;
     private String postTime;
     private String postDesc;
+    private int postId;// for editing comment
 
     public ShowPost(String userName, boolean gender, String postTitle, String postTime, String postDesc) {
         this.userName = userName;
@@ -17,6 +18,14 @@ public class ShowPost implements Serializable{
         this.postTitle = postTitle;
         this.postTime = postTime;
         this.postDesc = postDesc;
+    }
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public void setPostId(int postId) {
+        this.postId = postId;
     }
 
     public ShowPost() {

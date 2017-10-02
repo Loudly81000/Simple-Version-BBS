@@ -128,7 +128,7 @@ public class PostDB {
             //SELECT * FROM comment LEFT JOIN user on user.UserID = comment.uid WHERE user.FirstName="qqqqqqqqqqq";
             //SELECT * FROM post_list LEFT JOIN user_list on user_list.userID = post_list.uid WHERE user_list.userName = "ffff";
             sql =
-                    "SELECT user_list.userName, user_list.gender, post_list.post_title, post_list.post_time, post_list.post_desc " +
+                    "SELECT user_list.userName, user_list.gender, post_list.post_title, post_list.post_time, post_list.post_desc, post_list.post_id " +
                             "FROM post_list " +
                             "LEFT JOIN user_list on user_list.userID = post_list.uid WHERE user_list.userName=?" ;
 
@@ -151,10 +151,15 @@ public class PostDB {
                 System.out.println(timestamp);
 
                 String postDesc = rs.getString(5);
+
+                //get post_id
+                //post_id is for editing comment
+                int postId = rs.getInt(6);
+
                 ShowPost showPost = new ShowPost(userName, gender, postTitle, postTime, postDesc);
+                showPost.setPostId(postId);
                 postInfoList.add(showPost);
             }
-
 
         }catch(SQLException e){
             e.printStackTrace();
