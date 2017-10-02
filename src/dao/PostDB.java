@@ -116,6 +116,49 @@ public class PostDB {
         return result;
     }
 
+
+    //update editted post data to DB
+    //input parameter is post edited
+    public Boolean setPostEdited(PostInfo postEdited){
+
+        Boolean result = true;
+
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+
+            //Step1
+            //created sql statement for update post edited
+            String sql = "UPDATE post_list SET post_desc = ? WHERE post_id = ?";
+
+            //Step2
+            //pass sql statement to db
+            dbConnection = getDbConnection();
+            PreparedStatement preState = dbConnection.prepareStatement(sql);
+            preState.setString(1, postEdited.getPostDesc());
+            preState.setInt(2, postEdited.getPostId());
+            result = preState.execute();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+            result = false;
+        }catch(ClassNotFoundException e){
+            e.printStackTrace();
+            result = false;
+        }finally{
+            try {
+                dbConnection.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+
+        return  result;
+    }
+
+
+
+
     //query user's info by userID(primary key)
     public ArrayList<ShowPost> EditPostInfo(User loginUser){
 
@@ -124,9 +167,8 @@ public class PostDB {
 
         try {
 
-            //create sql
-            //SELECT * FROM comment LEFT JOIN user on user.UserID = comment.uid WHERE user.FirstName="qqqqqqqqqqq";
-            //SELECT * FROM post_list LEFT JOIN user_list on user_list.userID = post_list.uid WHERE user_list.userName = "ffff";
+            //Step 1.
+            //create sql statement and send statement to db
             sql =
                     "SELECT user_list.userName, user_list.gender, post_list.post_title, post_list.post_time, post_list.post_desc, post_list.post_id " +
                             "FROM post_list " +
@@ -139,6 +181,9 @@ public class PostDB {
             prestat.setString(1,loginUser.getUserName());
             //send sql to db to get query result(user info)
             ResultSet rs = prestat.executeQuery();
+
+            //Step 2.
+            //get result from db
             while(rs.next()){
                 String userName = rs.getString(1);
                 boolean gender = rs.getBoolean(2);
@@ -156,6 +201,9 @@ public class PostDB {
                 //post_id is for editing comment
                 int postId = rs.getInt(6);
 
+                //Step 3.
+                //set value in showPost object
+                // pass value to arraylist for showing post info in edit page
                 ShowPost showPost = new ShowPost(userName, gender, postTitle, postTime, postDesc);
                 showPost.setPostId(postId);
                 postInfoList.add(showPost);

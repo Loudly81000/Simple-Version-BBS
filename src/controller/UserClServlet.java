@@ -20,11 +20,12 @@ import java.util.ArrayList;
 public class UserClServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //get type from jsp for
+        // setting value, showing value, or updating value
         String type = request.getParameter("type");
         String url = "";
         PostDB postDB = new PostDB();
         UserDB userDB = new UserDB();
-
 
         if(type.equals("gotoaddInfo")){
             url = "/view/addUser/addInfo.jsp";
@@ -38,6 +39,7 @@ public class UserClServlet extends HttpServlet {
 
         if(type.equals("addInfo")){
 
+            //Step 1.
             //receive value from addInfo.jsp
             String userName = request.getParameter("userName");
             String password = request.getParameter("password");
@@ -53,6 +55,7 @@ public class UserClServlet extends HttpServlet {
                 gender = false;
             }
 
+            //Step 2.
             //pass value to db
             User user = new User(userName, password, email, myDesc, gender);
             Boolean result = userDB.insert(user);
@@ -60,6 +63,7 @@ public class UserClServlet extends HttpServlet {
             url = "/view/addUser/addInfoResult.jsp";
 
         }
+
 
         if(type.equals("gotomanager")){
 
@@ -77,6 +81,7 @@ public class UserClServlet extends HttpServlet {
             }
 
         }
+
 
         if(type.equals("insertPost")){
             //Step 1.
@@ -105,6 +110,8 @@ public class UserClServlet extends HttpServlet {
                 request.setAttribute("result","fail");
             }
 
+            //Step4.
+            //return to message board and show info
             //for showing message board
             request.setAttribute("userName",userName);
             ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
@@ -116,6 +123,41 @@ public class UserClServlet extends HttpServlet {
 
             //return to manager.jsp and activate alert"update message successfully"
             url = "/view/manager.jsp";
+        }
+
+
+        if(type.equals("passpostInfoedited")){
+
+            //Step 1.
+            //get info edited from manager.jsp
+            String postDesc = request.getParameter("postDesc");
+            String spostId = request.getParameter("postId");
+            int postId = Integer.valueOf(spostId);
+
+            //Step 2.
+            //update info to db
+            //first, store data to postInfo object through encapsulation
+            PostInfo postInfo = new PostInfo();
+            postInfo.setPostId(postId);
+            postInfo.setPostDesc(postDesc);
+            //call method to update info
+            Boolean setPostResult = postDB.setPostEdited(postInfo);
+
+            //Step 3.
+            //return to manager.jsp
+            ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+            request.setAttribute("showPostArrayList",showPostArrayList);
+
+            //for showing edit message page
+            String userName = request.getParameter("userName");
+            User user = new User();
+            user.setUserName(userName);
+            ArrayList<ShowPost> editPostArrayList = postDB.EditPostInfo(user);
+            request.setAttribute("editPostArrayList", editPostArrayList);
+
+            //return to manager.jsp and activate alert"update message successfully"
+            url = "/view/manager.jsp";
+
         }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);

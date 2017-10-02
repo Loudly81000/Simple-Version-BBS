@@ -131,10 +131,12 @@
                 <div class="col-sm-6">
                     <div id="tb-testimonial2" class="testimonial testimonial-default"><%int i=1;%>
                         <c:forEach var="editPost"  items="${editPostArrayList}">
-                        <form action="" method="post" action="">
+                        <form action="UserClServlet?type=passpostInfoedited" method="post">
                             <div class="testimonial-section">
                                 <h4>${editPost.postTitle}</h4>
-                                <textarea name="postDesc" rows="3" readonly id="<%= i%>" >${editPost.postDesc}</textarea>
+                                <textarea name="postDesc" rows="3" readonly id="<%= i%>" required>${editPost.postDesc}</textarea>
+                                <input type="hidden" name="postId" value="${editPost.postId}">
+                                <input type="hidden" name="userName" value="${userName}" >
                             </div>
                             <div class="testimonial-desc">
                                 <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />

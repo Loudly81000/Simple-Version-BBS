@@ -13,6 +13,7 @@ public class UserDB {
     private Connection dbConnection  = null;
     private String sql;
 
+
     //insert data to table user_list
     public Boolean insert(User user) {
 
@@ -52,11 +53,6 @@ public class UserDB {
             }
             return result;
     }
-
-    //
-
-
-
 
 
     //query user's info by userID(primary key)
@@ -100,6 +96,7 @@ public class UserDB {
         return re;
     }
 
+
     //password verification
     //parameter is the value from user inputted
     public Boolean getVerifyResult(User user){
@@ -114,8 +111,6 @@ public class UserDB {
     }
 
 
-
-
     public Connection getDbConnection(){
         try {
             dbConnection = DriverManager.getConnection(url, username, password);
@@ -124,12 +119,6 @@ public class UserDB {
         }
         return dbConnection;
     }
-
-
-
-
-
-
 
 
 }
