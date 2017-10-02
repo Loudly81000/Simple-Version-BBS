@@ -356,6 +356,16 @@ session壓參數傳到manager.jsp
 1.完成LoginClServlet的Sesssion(O)
 2.留言板的留言時間需要顯示時分秒(O)
 
+10/2
+1.完成UserClServlet的Session(O)
+  登入後如果url是
+  http://localhost8080/UserClServlet...
+  http://localhost8080/LoginClServlet...
+  的情況下
+  因為登入後有Session所以URL是以上再重新整理還是會跳到manager.jsp
+  另外manager.jsp也會檢查有沒有session
+  如果User在沒登入的情況下直接輸入http://localhost8080/view/manager.jsp
+  會跳到登入頁面
 
 
 
