@@ -316,7 +316,7 @@ Login完成後塞一個變數到session(userID??)
 insert的頁面沒登入要導到登入頁面
 每一個頁面都不能有這個狀況
 
-10/11 (要請假)
+10/16
 1.EDIT/Delete
 2.Session
 
@@ -366,6 +366,31 @@ session壓參數傳到manager.jsp
   另外manager.jsp也會檢查有沒有session
   如果User在沒登入的情況下直接輸入http://localhost8080/view/manager.jsp
   會跳到登入頁面
+2.提出編輯留言
+  User使用時的步驟
+  Step1.
+  將資料提出到UserClServlet
+  需要附帶參數postId確定要改的是哪個留言
+  Step2.
+  UserClServlet修改後再回去manager.jsp
+ 
+  programer要改的地方
+  1.ShowPost類別中增加postId
+    不是用來給User看
+    用來修改comment用的
+  2.postDB中
+    增加一個method
+    用來傳SQL給DB改留言
+  3.UserClServlet接收User
+    修改後的資料以及comment的postID後
+    call method修改
+    之後回傳修改後的資料到manager.jsp
+  
+  
+  
+  
+  
+  
 
 
 
