@@ -117,6 +117,17 @@ public class PostDB {
     }
 
 
+    public Boolean deletePost(PostInfo postInfo){
+
+        Boolean result = false;
+
+
+
+
+        return result;
+    }
+
+
     //update editted post data to DB
     //input parameter is post edited
     public Boolean setPostEdited(PostInfo postEdited){

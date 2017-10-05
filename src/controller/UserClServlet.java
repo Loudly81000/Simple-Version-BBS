@@ -160,6 +160,14 @@ public class UserClServlet extends HttpServlet {
 
         }
 
+        if(type.equals("deleteComment")){
+
+            //Step 1.
+
+
+
+        }
+
         getServletContext().getRequestDispatcher(url).forward(request, response);
 
     }

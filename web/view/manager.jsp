@@ -151,6 +151,8 @@
                                     <a class="testimonial-writer-company" >${editPost.postTime}</a>
                                         <button type="button" class="btn btn-primary"
                                                 style="margin-left: 50px" onclick="onClick(<%= i%>)">Edit</button>
+                                    <input type="button" value="Delete" class="btn btn-primary"
+                                           onClick="this.form.action='UserClServlet?type=deleteComment';this.form.submit();">
                                     <input type="submit" class="btn btn-primary" value="Submit">
                                 </div>
                             </div><br>
