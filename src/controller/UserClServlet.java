@@ -87,6 +87,7 @@ public class UserClServlet extends HttpServlet {
             //Step 1.
             // get userID by userName
             String userName= request.getParameter("userName");
+            System.out.println(userName);
             User user = new User();
             user.setUserName(userName);
             User reUser = userDB.queryByuserName(user);
@@ -152,6 +153,7 @@ public class UserClServlet extends HttpServlet {
             String userName = request.getParameter("userName");
             User user = new User();
             user.setUserName(userName);
+            request.setAttribute("userName",userName);
             ArrayList<ShowPost> editPostArrayList = postDB.EditPostInfo(user);
             request.setAttribute("editPostArrayList", editPostArrayList);
 
@@ -160,11 +162,35 @@ public class UserClServlet extends HttpServlet {
 
         }
 
+
         if(type.equals("deleteComment")){
 
             //Step 1.
+            //get info user want to delete
+            String spostId = request.getParameter("postId");
+            int postId = Integer.valueOf(spostId);
 
+            //Step 2.
+            //delete comment
+            PostInfo postInfo = new PostInfo();
+            postInfo.setPostId(postId);
+            Boolean deleteResult = postDB.deletePost(postInfo);
 
+            //Step3.
+            //return to manager.jsp
+            ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+            request.setAttribute("showPostArrayList",showPostArrayList);
+
+            //for showing edit message page
+            String userName = request.getParameter("userName");
+            User user = new User();
+            user.setUserName(userName);
+            request.setAttribute("userName",userName);
+            ArrayList<ShowPost> editPostArrayList = postDB.EditPostInfo(user);
+            request.setAttribute("editPostArrayList", editPostArrayList);
+
+            //return to manager.jsp and activate alert"update message successfully"
+            url = "/view/manager.jsp";
 
         }
 

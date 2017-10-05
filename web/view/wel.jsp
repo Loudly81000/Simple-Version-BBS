@@ -19,14 +19,8 @@
 
 <button style="width:auto;" onclick="self.location.href='/LoginClServlet?type=gotologinView'">
     Login</button>
-
-
 <br>
 <a href="/UserClServlet?type=gotoaddInfo">Sign up</a>
-
-
-
-
 </body>
 </html>
 

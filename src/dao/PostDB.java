@@ -121,8 +121,33 @@ public class PostDB {
 
         Boolean result = false;
 
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
 
+            //Step 1.
+            //create sql statement for updating post edited
+            String sql = "DELETE FROM post_list WHERE post_id = ?";
 
+            //Step 2.
+            //pass sql statement to db
+            dbConnection = getDbConnection();
+            PreparedStatement preState = dbConnection.prepareStatement(sql);
+            preState.setInt(1, postInfo.getPostId());
+            result = preState.execute();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+            result = false;
+        } catch(ClassNotFoundException e){
+            e.printStackTrace();
+            result = false;
+        }finally {
+            try {
+                dbConnection.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
 
         return result;
     }
@@ -138,11 +163,11 @@ public class PostDB {
 
             Class.forName("com.mysql.jdbc.Driver");
 
-            //Step1
-            //created sql statement for update post edited
+            //Step 1.
+            //create sql statement for updating post edited
             String sql = "UPDATE post_list SET post_desc = ? WHERE post_id = ?";
 
-            //Step2
+            //Step 2.
             //pass sql statement to db
             dbConnection = getDbConnection();
             PreparedStatement preState = dbConnection.prepareStatement(sql);

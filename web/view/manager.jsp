@@ -194,7 +194,6 @@
 
     });
 
-
      function onClick(id){
          document.getElementById(id).removeAttribute('readonly');
      };
@@ -214,10 +213,6 @@
     //each?
 
 //    $("button").onClick();
-
-
-
-
 
 </script>
 
