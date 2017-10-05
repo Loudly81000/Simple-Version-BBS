@@ -395,6 +395,16 @@ delete留言功能
 需要在form中做一個submit按鈕
 點下去時啟動方法用另外一個action
 做到跟本來的submit(修改留言)不同的效果(delete)
+
+10/6
+1.完成delete功能
+2.解決500 NullPointerException的Bug
+  原因:
+  在UserClServlet中完成刪除或是編輯留言後的程式碼區塊沒有加上
+  request.setAttribuet("userName", userName)
+  因為用戶名稱在表單中用hidden的方式藏起來
+  在編寫comment的時候會用到
+  先進行刪除留言或是編輯留言的動作又少了這一行程式碼就會空指針
   
   
   
