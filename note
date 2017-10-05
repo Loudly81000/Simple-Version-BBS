@@ -386,6 +386,15 @@ session壓參數傳到manager.jsp
     call method修改
     之後回傳修改後的資料到manager.jsp
     
+    
+10/3
+1.delete留言功能    
+
+10/5
+delete留言功能
+需要在form中做一個submit按鈕
+點下去時啟動方法用另外一個action
+做到跟本來的submit(修改留言)不同的效果(delete)
   
   
   
