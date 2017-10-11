@@ -414,6 +414,14 @@ delete留言功能
   需要利用jQuery來做click function讓user點擊登出部分後
   用function來設定點擊後的動作(X)
   直接在html要點擊的區塊弄個onclick就好(O)
+2.登出後按上一頁會跑回登出前的畫面
+  這一段code插在manager.jsp試試看
+  <% 
+  Response.Buffer = True 
+  Response.ExpiresAbsolute = Now() - 1 
+  Response.Expires = 0 
+  Response.CacheControl = "no-cache" 
+  %> 
   
   
   
