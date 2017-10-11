@@ -206,6 +206,7 @@ public class UserClServlet extends HttpServlet {
         String referer = request.getHeader("Referer");
         String url = "";
         System.out.println(sessionLogin);
+        String type = request.getParameter("type");
 
         //check whether session is set or not
         //if set finished -> show message board & editpost page

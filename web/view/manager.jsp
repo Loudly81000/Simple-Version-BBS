@@ -1,4 +1,4 @@
-<%--
+<%@ page import="javax.xml.ws.Response" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 9/10/2017
@@ -24,7 +24,7 @@
         .testimonial-section {
             width: 200%;}
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--%>
     <script type="text/javascript"></script>
 </head>
 <body>
@@ -49,7 +49,8 @@
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="pages"><i class="fa fa-file-o fa-fw"></i>Message Board</a></li>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="forms"><i class="fa fa-tasks fa-fw"></i>Write Comment</a></li>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="table"><i class="fa fa-table fa-fw"></i>Edit Comment</a></li>
-                    <li><a href="http://www.jquery2dotnet.com" data-target-id="settings"><i class="fa fa-cogs fa-fw"></i>Settings</a></li>
+                    <li><a href="http://www.jquery2dotnet.com" data-target-id="settings" onclick="self.location.href='/LoginClServlet?type=logOut'">
+                        <i class="fa fa-cogs fa-fw"></i>Log Out</a></li>
             </ul>
         </div>
         <div class="col-md-9 well admin-content" id="home">
@@ -80,7 +81,7 @@
                                         <c:if test="${!editPost.gender}">
                                         female
                                         </c:if></div>
-                                    <a href="#" class="testimonial-writer-company">${editPost.postTime}</a>
+                                    <div class="testimonial-writer-company">${editPost.postTime}</div>
                                 </div>
                             </div><br>
                         </c:forEach>
@@ -150,7 +151,7 @@
                                         </c:if></div>
                                     <a class="testimonial-writer-company" >${editPost.postTime}</a>
                                         <button type="button" class="btn btn-primary"
-                                                style="margin-left: 50px" onclick="onClick(<%= i%>)">Edit</button>
+                                                style="margin-left: 50px" onclick="onClick(<%= i%>)" id="changereadonly">Edit</button>
                                     <input type="button" value="Delete" class="btn btn-primary"
                                            onClick="this.form.action='UserClServlet?type=deleteComment';this.form.submit();">
                                     <input type="submit" class="btn btn-primary" value="Submit">
@@ -197,22 +198,18 @@
      function onClick(id){
          document.getElementById(id).removeAttribute('readonly');
      };
-//    //jQuery $(#)
+//    (function($){
+//        $.fn.onClick = function(id){
+//            document.getElementById(id).removeAttribute('readonly');
+//        }
+//    })(jQuery);
+//
+//    $('#changereadonly').click(function(){
+//        id = $.extend({id:1} , id);
+//        $('#changereadonly').onClick(id);
+//    });
 
-//    $.fn.onClick=function (id) {
-//        return $(this).onclick(function() {
-//                var id = $('#' + id).get();
-//                id.removeAttribute("readonly");
-//            });
-//    };
-//    $('textarea')
 
-
-    //jQuery object?
-    //DOM object ?
-    //each?
-
-//    $("button").onClick();
 
 </script>
 

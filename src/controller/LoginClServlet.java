@@ -124,8 +124,10 @@ public class LoginClServlet extends HttpServlet {
              url = "/view/login/loginView.jsp";
          }
 
-         System.out.println(url);
-         System.out.println(referer);
+        if(type.equals("logOut")){
+            session.removeAttribute("sessionLogin");
+            url = "/view/login/loginView.jsp";
+        }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }

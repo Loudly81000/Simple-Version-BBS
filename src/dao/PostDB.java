@@ -229,7 +229,6 @@ public class PostDB {
                 Timestamp timestamp = rs.getTimestamp(4);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String  postTime= dateFormat.format(timestamp);
-                System.out.println(timestamp);
 
                 String postDesc = rs.getString(5);
 
