@@ -408,6 +408,12 @@ delete留言功能
   
 10/7
 1.最後將Ajax功能套在留言功能上面
+
+10/12
+1.登出功能
+  需要利用jQuery來做click function讓user點擊登出部分後
+  用function來設定點擊後的動作(X)
+  直接在html要點擊的區塊弄個onclick就好(O)
   
   
   
