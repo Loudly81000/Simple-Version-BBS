@@ -395,6 +395,33 @@ delete留言功能
 需要在form中做一個submit按鈕
 點下去時啟動方法用另外一個action
 做到跟本來的submit(修改留言)不同的效果(delete)
+
+10/6
+1.完成delete功能
+2.解決500 NullPointerException的Bug
+  原因:
+  在UserClServlet中完成刪除或是編輯留言後的程式碼區塊沒有加上
+  request.setAttribuet("userName", userName)
+  因為用戶名稱在表單中用hidden的方式藏起來
+  在編寫comment的時候會用到
+  先進行刪除留言或是編輯留言的動作又少了這一行程式碼就會空指針
+  
+10/7
+1.最後將Ajax功能套在留言功能上面
+
+10/12
+1.登出功能
+  需要利用jQuery來做click function讓user點擊登出部分後
+  用function來設定點擊後的動作(X)
+  直接在html要點擊的區塊弄個onclick就好(O)
+2.登出後按上一頁會跑回登出前的畫面
+  這一段code插在manager.jsp試試看
+  <% 
+  Response.Buffer = True 
+  Response.ExpiresAbsolute = Now() - 1 
+  Response.Expires = 0 
+  Response.CacheControl = "no-cache" 
+  %> 
   
   
   
