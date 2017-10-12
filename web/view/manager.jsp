@@ -26,9 +26,13 @@
     </style>
     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--%>
     <script type="text/javascript"></script>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 </head>
 <body>
 <%HttpSession s = request.getSession();
+  //check user had loged in or not
   String sessionLogin = (String)s.getAttribute("sessionLogin");
   String url = "";
   if(sessionLogin != null && !sessionLogin.equals("sessionLogin")){
@@ -149,9 +153,9 @@
                                         <c:if test="${!editPost.gender}">
                                             female
                                         </c:if></div>
-                                    <a class="testimonial-writer-company" >${editPost.postTime}</a>
+                                    <div class="testimonial-writer-company">${editPost.postTime}</div>
                                         <button type="button" class="btn btn-primary"
-                                                style="margin-left: 50px" onclick="onClick(<%= i%>)" id="changereadonly">Edit</button>
+                                                style="margin-left: 50px"  onclick="onClick(<%= i%>)" id="changereadonly">Edit</button>
                                     <input type="button" value="Delete" class="btn btn-primary"
                                            onClick="this.form.action='UserClServlet?type=deleteComment';this.form.submit();">
                                     <input type="submit" class="btn btn-primary" value="Submit">
@@ -198,6 +202,16 @@
      function onClick(id){
          document.getElementById(id).removeAttribute('readonly');
      };
+
+     <%--$("#changereadonly").on("click", function(<%= i%>){--%>
+         <%--document.getElementById(i).removeAttribute('readonly');--%>
+     <%--});--%>
+    //onclick="onClick()"
+
+//    $("#button-container button").on("click", function(event)){
+//        hiddenBox.toggle();
+//    });
+
 //    (function($){
 //        $.fn.onClick = function(id){
 //            document.getElementById(id).removeAttribute('readonly');
@@ -208,9 +222,6 @@
 //        id = $.extend({id:1} , id);
 //        $('#changereadonly').onClick(id);
 //    });
-
-
-
 </script>
 
 

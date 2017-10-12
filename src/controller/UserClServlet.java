@@ -27,14 +27,14 @@ public class UserClServlet extends HttpServlet {
         PostDB postDB = new PostDB();
         UserDB userDB = new UserDB();
 
-        if(type.equals("gotoaddInfo")){
-            url = "/view/addUser/addInfo.jsp";
-        }
-
-
-        if(type.equals("gotowelcome")){
-            url="/view/wel.jsp";
-        }
+//        if(type.equals("gotoaddInfo")){
+//            url = "/view/addUser/addInfo.jsp";
+//        }
+//
+//
+//        if(type.equals("gotowelcome")){
+//            url="/view/wel.jsp";
+//        }
 
 
         if(type.equals("addInfo")){
@@ -228,8 +228,16 @@ public class UserClServlet extends HttpServlet {
         }
 
         //if not, return to loggin page
-        if(sessionLogin == null){
-                url="/view/login/loginView.jsp";
+        if(type.equals("gotoaddInfo") && sessionLogin == null){
+               url = "/view/addUser/addInfo.jsp";
+        }
+
+        if( sessionLogin == null){
+            url = "/view/login/loginView.jsp";
+        }
+
+        if(type.equals("gotowelcome")){
+            url="/view/wel.jsp";
         }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);

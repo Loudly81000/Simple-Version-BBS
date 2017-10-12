@@ -40,7 +40,7 @@
                               maxlength="140" rows="7"></textarea>
                     <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
                 </div>
-                <a href="/UserClServlet?type=gotowelcome" >return to last page</a>
+                <a href="/UserClServlet?type=gotowelcome" >return to home page</a>
 
                 <input type="submit" id="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
             </form>
