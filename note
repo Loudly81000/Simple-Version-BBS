@@ -429,6 +429,13 @@ delete留言功能
   b.點擊新增留言後
     留言表單裡面的留言會維持本來的狀態
     留言板會新增留言
+  Step1.
+    先用message board裡留言的區域,將長度縮小再放到
+    User的留言右邊
+  Step2.
+    在comment區裡面做表單,comment區域與submit button
+  Step3.
+    用Ajax技術達成留言送出後不會影響留言區
 
   
   
