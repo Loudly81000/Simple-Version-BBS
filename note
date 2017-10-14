@@ -436,6 +436,14 @@ delete留言功能
     在comment區裡面做表單,comment區域與submit button
   Step3.
     用Ajax技術達成留言送出後不會影響留言區
+  
+ 10/14
+ 1.testimonial section 需要調整
+   (將邊框在往右放大一些)
+ 2.div並行style="float:right;"
+   需要使用
+   想辦法將留言區往右移
+ 3.先做Ajax功能再調整CSS
 
   
   
