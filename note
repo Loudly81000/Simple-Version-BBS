@@ -423,6 +423,38 @@ delete留言功能
   Response.CacheControl = "no-cache" 
   %> 
   
+10/13
+1.Ajax 留言功能描述
+  a.留言表單放在留言板旁邊
+  b.點擊新增留言後
+    留言表單裡面的留言會維持本來的狀態
+    留言板會新增留言
+  Step1.
+    先用message board裡留言的區域,將長度縮小再放到
+    User的留言右邊
+  Step2.
+    在comment區裡面做表單,comment區域與submit button
+  Step3.
+    用Ajax技術達成留言送出後不會影響留言區(技術上10/15達成)
+  
+ 10/14
+ 1.testimonial section 需要調整
+   (將邊框在往右放大一些)
+ 2.div並行style="float:right;"
+   需要使用
+   想辦法將留言區往右移
+ 3.先做Ajax功能再調整CSS
+ 
+ 10/15
+ 1.Ajax套在本來的留言區域測試成功
+   留言成功後會跑出alert "submitted successfully"
+ 2.接下來嘗試用
+   Bootstrap裡面範例的表單
+   調整到可行的size
+   放到message board的旁邊
+ 
+
+  
   
   
   
