@@ -66,9 +66,9 @@
             </p>
         </div>
         <%--message board--%>
-        <div class="col-md-9 well admin-content" id="pages">
-            <div class="row">
-                <div class="col-sm-6">
+        <div class="col-md-9 well admin-content" id="pages" >
+            <div class="row" >
+                <div class="col-sm-6" >
                     <div id="tb-testimonial" class="testimonial testimonial-default">
                         <c:forEach var="editPost" items="${showPostArrayList}">
                             <div class="testimonial-section">
@@ -154,8 +154,9 @@
                                             female
                                         </c:if></div>
                                     <div class="testimonial-writer-company">${editPost.postTime}</div>
-                                        <button type="button" class="btn btn-primary"
-                                                style="margin-left: 50px"  onclick="onClick(<%= i%>)" id="changereadonly">Edit</button>
+                                        <%--<button type="button" class="btn btn-primary"--%>
+                                                <%--style="margin-left: 50px"  onclick="onClick(<%= i%>)" id="changereadonly">Edit</button>--%>
+                                    <a href="javascript:onClick(<%= i%>)" class="btn btn-primary" style="margin-left: 50px">Edit</a>
                                     <input type="button" value="Delete" class="btn btn-primary"
                                            onClick="this.form.action='UserClServlet?type=deleteComment';this.form.submit();">
                                     <input type="submit" class="btn btn-primary" value="Submit">
@@ -177,6 +178,7 @@
 </body>
 </html>
 <script>
+
     //create menu
     $(document).ready(function()
     {
@@ -199,29 +201,27 @@
 
     });
 
+    //cancel readonly for editing message
      function onClick(id){
-         document.getElementById(id).removeAttribute('readonly');
-     };
+         //document.getElementById(id).removeAttribute('readonly');
+         $("#" + id).removeAttr('readonly');
+     }
 
-     <%--$("#changereadonly").on("click", function(<%= i%>){--%>
-         <%--document.getElementById(i).removeAttribute('readonly');--%>
-     <%--});--%>
-    //onclick="onClick()"
+    //use Ajax when writing comment
+    var frm = $("#frmComment");
+    frm.submit(function(){
 
-//    $("#button-container button").on("click", function(event)){
-//        hiddenBox.toggle();
-//    });
+        $.ajax({
+            type: "POST",
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (result) {
+                console.log(result);
+                alert("submitted successfully");
+            }
+        })
+    });
 
-//    (function($){
-//        $.fn.onClick = function(id){
-//            document.getElementById(id).removeAttribute('readonly');
-//        }
-//    })(jQuery);
-//
-//    $('#changereadonly').click(function(){
-//        id = $.extend({id:1} , id);
-//        $('#changereadonly').onClick(id);
-//    });
 </script>
 
 
