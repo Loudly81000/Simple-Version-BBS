@@ -447,11 +447,17 @@ delete留言功能
  
  10/15
  1.Ajax套在本來的留言區域測試成功
-   留言成功後會跑出alert "submitted successfully"
+   留言成功後會跑出alert "submitted successfully"(O)
  2.接下來嘗試用
    Bootstrap裡面範例的表單
    調整到可行的size
-   放到message board的旁邊
+   放到message board的旁邊(X)
+ 
+ 10/16
+ 1.分頁建立類別(O)
+ 2.思考分頁類別需不需要分成domain跟DAO
+   還是只要模組就好
+ 
  
 
   
