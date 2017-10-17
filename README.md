@@ -12,6 +12,7 @@ a webapp by myself.
 5.JDBC
 6.jQuery / Ajax / Javascript
 
+ Users can create their own account and sign in this webapp to write comment and edit comment.
 
 
   
