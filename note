@@ -458,14 +458,19 @@ delete留言功能
  2.思考分頁類別需不需要分成domain跟DAO
    還是只要模組就好
  
+ 10/20
+ 1.完成分頁的SQL語句測試
+   設定當前頁數為1頁數Size為3時可以show出來post_id1~3的內容
+ 2.分頁接下來要完成的有:
+   a.manager.jsp的function
+     在User點擊頁數的區塊時
+     要呼叫function
+     1.重新導回頁面並且傳遞參數,navbar要跑到目前的留言板(編輯頁面或是message board)
+     2.在servlet要做調整設一個type的區塊
+       可以改變pageNow再傳送資料回去
+   b.在編輯留言以及messageboard用來取資料的function要將
+      分頁的功能導入
  
-
-  
-  
-  
-  
-  
-  
 
 
 
