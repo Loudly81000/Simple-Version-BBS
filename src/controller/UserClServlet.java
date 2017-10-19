@@ -1,9 +1,9 @@
 package controller;
 
-import dao.PostDB;
-import dao.UserDB;
+import dao.PostDAO;
+import dao.UserDAO;
 import domain.PostInfo;
-import domain.PostInfo;
+import domain.SeperatePage;
 import domain.ShowPost;
 import domain.User;
 
@@ -24,8 +24,8 @@ public class UserClServlet extends HttpServlet {
         // setting value, showing value, or updating value
         String type = request.getParameter("type");
         String url = "";
-        PostDB postDB = new PostDB();
-        UserDB userDB = new UserDB();
+        PostDAO postDAO = new PostDAO();
+        UserDAO userDAO = new UserDAO();
 
 //        if(type.equals("gotoaddInfo")){
 //            url = "/view/addUser/addInfo.jsp";
@@ -58,7 +58,7 @@ public class UserClServlet extends HttpServlet {
             //Step 2.
             //pass value to db
             User user = new User(userName, password, email, myDesc, gender);
-            Boolean result = userDB.insert(user);
+            Boolean result = userDAO.insert(user);
             request.setAttribute("result", result);
             url = "/view/addUser/addInfoResult.jsp";
 
@@ -71,7 +71,7 @@ public class UserClServlet extends HttpServlet {
 
             if(login == "login") {
                 //show messge board page
-                ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+                ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
                 request.setAttribute("showPostArrayList", showPostArrayList);
                 url = "/view/manager.jsp";
             }
@@ -90,7 +90,7 @@ public class UserClServlet extends HttpServlet {
             System.out.println(userName);
             User user = new User();
             user.setUserName(userName);
-            User reUser = userDB.queryByuserName(user);
+            User reUser = userDAO.queryByuserName(user);
             int userID = reUser.getUserID();
 
             //Step 2.
@@ -102,7 +102,7 @@ public class UserClServlet extends HttpServlet {
             postInfo.setUid(userID);
 
             //Step 3. insertInfo and set uid
-            Boolean result = postDB.insertPostInfo(postInfo);
+            Boolean result = postDAO.insertPostInfo(postInfo);
 
             if(result){
                 request.setAttribute("result","success");
@@ -115,12 +115,18 @@ public class UserClServlet extends HttpServlet {
             //return to message board and show info
             //for showing message board
             request.setAttribute("userName",userName);
-            ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+            ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
             request.setAttribute("showPostArrayList",showPostArrayList);
 
             //for showing edit message page
-            ArrayList<ShowPost> editPostArrayList = postDB.EditPostInfo(user);
+            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
             request.setAttribute("editPostArrayList", editPostArrayList);
+
+            //for showing page seperate (test)
+            SeperatePage sp = new SeperatePage();
+            sp.setPageNow(1);sp.setPageNums(3);
+            ArrayList<ShowPost>  pageInfo =  postDAO.getPageInfo(sp);
+            request.setAttribute("pageInfo",pageInfo);
 
             //return to manager.jsp and activate alert"update message successfully"
             url = "/view/manager.jsp";
@@ -142,11 +148,11 @@ public class UserClServlet extends HttpServlet {
             postInfo.setPostId(postId);
             postInfo.setPostDesc(postDesc);
             //call method to update info
-            Boolean setPostResult = postDB.setPostEdited(postInfo);
+            Boolean setPostResult = postDAO.setPostEdited(postInfo);
 
             //Step 3.
             //return to manager.jsp
-            ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+            ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
             request.setAttribute("showPostArrayList",showPostArrayList);
 
             //for showing edit message page
@@ -154,8 +160,14 @@ public class UserClServlet extends HttpServlet {
             User user = new User();
             user.setUserName(userName);
             request.setAttribute("userName",userName);
-            ArrayList<ShowPost> editPostArrayList = postDB.EditPostInfo(user);
+            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
             request.setAttribute("editPostArrayList", editPostArrayList);
+
+            //for showing page seperate (test)
+            SeperatePage sp = new SeperatePage();
+            sp.setPageNow(1);sp.setPageNums(3);
+            ArrayList<ShowPost>  pageInfo =  postDAO.getPageInfo(sp);
+            request.setAttribute("pageInfo",pageInfo);
 
             //return to manager.jsp and activate alert"update message successfully"
             url = "/view/manager.jsp";
@@ -174,11 +186,11 @@ public class UserClServlet extends HttpServlet {
             //delete comment
             PostInfo postInfo = new PostInfo();
             postInfo.setPostId(postId);
-            Boolean deleteResult = postDB.deletePost(postInfo);
+            Boolean deleteResult = postDAO.deletePost(postInfo);
 
             //Step3.
             //return to manager.jsp
-            ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+            ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
             request.setAttribute("showPostArrayList",showPostArrayList);
 
             //for showing edit message page
@@ -186,8 +198,14 @@ public class UserClServlet extends HttpServlet {
             User user = new User();
             user.setUserName(userName);
             request.setAttribute("userName",userName);
-            ArrayList<ShowPost> editPostArrayList = postDB.EditPostInfo(user);
+            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
             request.setAttribute("editPostArrayList", editPostArrayList);
+
+            //for showing page seperate (test)
+            SeperatePage sp = new SeperatePage();
+            sp.setPageNow(1);sp.setPageNums(3);
+            ArrayList<ShowPost>  pageInfo =  postDAO.getPageInfo(sp);
+            request.setAttribute("pageInfo",pageInfo);
 
             //return to manager.jsp and activate alert"update message successfully"
             url = "/view/manager.jsp";
@@ -212,16 +230,22 @@ public class UserClServlet extends HttpServlet {
         //if set finished -> show message board & editpost page
         if(sessionLogin !=null && sessionLogin.equals("sessionLogin")){
 
-                UserDB userDB = new UserDB();
+                UserDAO userDAO = new UserDAO();
 
                 //for showing message board
-                PostDB postDB = new PostDB();
-                ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+                PostDAO postDAO = new PostDAO();
+                ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
                 request.setAttribute("showPostArrayList", showPostArrayList);
 
                 //for showing edit message page
-                ArrayList<ShowPost> editPostArrayList = postDB.EditPostInfo(user);
+                ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
                 request.setAttribute("editPostArrayList", editPostArrayList);
+
+                //for showing page seperate (test)
+                SeperatePage sp = new SeperatePage();
+                sp.setPageNow(1);sp.setPageNums(3);
+                ArrayList<ShowPost>  pageInfo =  postDAO.getPageInfo(sp);
+                request.setAttribute("pageInfo",pageInfo);
 
                 url = "/view/manager.jsp";
 

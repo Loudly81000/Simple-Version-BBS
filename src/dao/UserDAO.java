@@ -4,7 +4,7 @@ import domain.User;
 
 import java.sql.*;
 
-public class UserDB {
+public class UserDAO {
 
     public static final String url = "jdbc:mysql://128.199.212.17:3306/zhengfuyi";
     public static final String username = "zhengfuyi";
@@ -119,6 +119,5 @@ public class UserDB {
         }
         return dbConnection;
     }
-
 
 }

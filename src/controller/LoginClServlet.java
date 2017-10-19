@@ -1,7 +1,8 @@
 package controller;
 
-import dao.PostDB;
-import dao.UserDB;
+import dao.PostDAO;
+import dao.UserDAO;
+import domain.SeperatePage;
 import domain.ShowPost;
 import domain.User;
 
@@ -23,7 +24,7 @@ public class LoginClServlet extends HttpServlet {
 
         String type = request.getParameter("type");
         String url = "";
-        UserDB userDB = new UserDB();
+        UserDAO userDAO = new UserDAO();
         HttpSession session = request.getSession();
 
         if(type.equals("verification")){
@@ -36,24 +37,30 @@ public class LoginClServlet extends HttpServlet {
             User user = new User();
             user.setUserName(userName);
             user.setPassword(password);
-            Boolean verifyRs = userDB.getVerifyResult(user);
+            Boolean verifyRs = userDAO.getVerifyResult(user);
 
             //get login result and dispatch to jsp to show result
             if(verifyRs == true){
-                PostDB postDB = new PostDB();
+                PostDAO postDAO = new PostDAO();
                 request.setAttribute("userName",userName);
 
                 //for showing message board
-                ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+                ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
                 request.setAttribute("showPostArrayList",showPostArrayList);
 
                 //for showing edit message page
-                ArrayList<ShowPost> editPostArrayList = postDB.EditPostInfo(user);
+                ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
                 request.setAttribute("editPostArrayList", editPostArrayList);
 
                 //set session for registration
                 session.setAttribute("sessionLogin", "sessionLogin");
                 session.setAttribute("user", user);
+
+                //for showing page seperate (test)
+                SeperatePage sp = new SeperatePage();
+                sp.setPageNow(1);sp.setPageNums(3);
+                ArrayList<ShowPost>  pageInfo =  postDAO.getPageInfo(sp);
+                request.setAttribute("pageInfo",pageInfo);
 
                 url = "/view/manager.jsp";
 
@@ -85,16 +92,22 @@ public class LoginClServlet extends HttpServlet {
             // goto manager.jsp
             if (referer == null) {
 
-                UserDB userDB = new UserDB();
+                UserDAO userDAO = new UserDAO();
 
                 //for showing message board
-                PostDB postDB = new PostDB();
-                ArrayList<ShowPost> showPostArrayList = postDB.showPostInfo();
+                PostDAO postDAO = new PostDAO();
+                ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
                 request.setAttribute("showPostArrayList", showPostArrayList);
 
                 //for showing edit message page
-                ArrayList<ShowPost> editPostArrayList = postDB.EditPostInfo(user);
+                ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
                 request.setAttribute("editPostArrayList", editPostArrayList);
+
+                //for showing page seperate (test)
+                SeperatePage sp = new SeperatePage();
+                sp.setPageNow(1);sp.setPageNums(3);
+                ArrayList<ShowPost>  pageInfo =  postDAO.getPageInfo(sp);
+                request.setAttribute("pageInfo",pageInfo);
 
                 url = "/view/manager.jsp";
 

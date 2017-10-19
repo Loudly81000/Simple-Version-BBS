@@ -50,11 +50,12 @@
             <ul class="nav nav-pills nav-stacked admin-menu">
                 <%--index for board--%>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="home"><i class="fa fa-home fa-fw"></i>Home</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="pages"><i class="fa fa-file-o fa-fw"></i>Message Board</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="pages" ><i class="fa fa-file-o fa-fw"></i>Message Board</a></li>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="forms"><i class="fa fa-tasks fa-fw"></i>Write Comment</a></li>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="table"><i class="fa fa-table fa-fw"></i>Edit Comment</a></li>
-                    <li><a href="http://www.jquery2dotnet.com" data-target-id="settings" onclick="self.location.href='/LoginClServlet?type=logOut'">
-                        <i class="fa fa-cogs fa-fw"></i>Log Out</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="settings" onclick="self.location.href='/LoginClServlet?type=logOut'">
+                     <i class="fa fa-cogs fa-fw"></i>Log Out</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="applications"><i class="fa fa-pencil fa-fw"></i>page</a></li>
             </ul>
         </div>
         <div class="col-md-9 well admin-content" id="home">
@@ -66,7 +67,7 @@
             </p>
         </div>
         <%--message board--%>
-        <div class="col-md-9 well admin-content" id="pages" >
+        <div class="col-md-9 well admin-content" id="pages" style="float:left">
             <div class="row" >
                 <div class="col-sm-6" >
                     <div id="tb-testimonial" class="testimonial testimonial-default">
@@ -93,6 +94,11 @@
                 </div>
             </div>
         </div>
+        <%--<form style="float:right;"  action="/UserClServlet?type=insertPost" method="post" id="userCmt" style="float:right">--%>
+            <%--<input type="text" name="postTitle"   placeholder="Title:" required><br><br>--%>
+            <%--<textarea  rows="3" name="postDesc" required></textarea><br>--%>
+            <%--<input type="submit" class="btn btn-primary" value="Submit">--%>
+        <%--</form>--%>
         <%--write comment--%>
         <div class="col-md-9 well admin-content" id="forms">
             <div class="row">
@@ -154,9 +160,7 @@
                                             female
                                         </c:if></div>
                                     <div class="testimonial-writer-company">${editPost.postTime}</div>
-                                        <%--<button type="button" class="btn btn-primary"--%>
-                                                <%--style="margin-left: 50px"  onclick="onClick(<%= i%>)" id="changereadonly">Edit</button>--%>
-                                    <a href="javascript:onClick(<%= i%>)" class="btn btn-primary" style="margin-left: 50px">Edit</a>
+                                    <a href="javascript:onClick(<%= i%>)" class="btn btn-primary" style="margin-left: 10px">Edit</a>
                                     <input type="button" value="Delete" class="btn btn-primary"
                                            onClick="this.form.action='UserClServlet?type=deleteComment';this.form.submit();">
                                     <input type="submit" class="btn btn-primary" value="Submit">
@@ -168,6 +172,34 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-md-9 well admin-content" id="applications">
+            <div class="row" >
+                <div class="col-sm-6" >
+                    <div id="tb-testimonial3" class="testimonial testimonial-default">
+                        <c:forEach var="editPost" items="${pageInfo}">
+                            <div class="testimonial-section">
+                                <h4>${editPost.postTitle}</h4>
+                                    ${editPost.postDesc}
+                            </div>
+                            <div class="testimonial-desc">
+                                <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
+                                <div class="testimonial-writer">
+                                    <div class="testimonial-writer-name">${editPost.userName}</div>
+                                    <div class="testimonial-writer-designation"><c:if test="${editPost.gender}">
+                                        Male
+                                    </c:if>
+                                        <c:if test="${!editPost.gender}">
+                                            female
+                                        </c:if></div>
+                                    <div class="testimonial-writer-company">${editPost.postTime}</div>
+                                </div>
+                            </div><br>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="col-md-9 well admin-content" id="settings">
 
@@ -223,5 +255,7 @@
     });
 
 </script>
+<%--<button type="button" class="btn btn-primary"--%>
+<%--style="margin-left: 50px"  onclick="onClick(<%= i%>)" id="changereadonly">Edit</button>--%>
 
 

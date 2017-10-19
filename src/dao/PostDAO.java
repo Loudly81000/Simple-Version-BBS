@@ -1,16 +1,14 @@
 package dao;
 
+import domain.*;
 import domain.PostInfo;
-import domain.PostInfo;
-import domain.ShowPost;
-import domain.User;
 
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class PostDB {
+public class PostDAO {
 
     public static final String url = "jdbc:mysql://128.199.212.17:3306/zhengfuyi";
     public static final String username = "zhengfuyi";
@@ -255,5 +253,98 @@ public class PostDB {
         }
         return postInfoList;
     }
+
+    public int getPageNums(){
+
+        int pageNums =0;
+
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            //Step1 getConnection java-DB
+            dbConnection = getDbConnection();
+
+            sql = "SELECT COUNT(*) AS ROWCOUNT FROM user_list";
+            Statement stat = dbConnection.createStatement();
+            ResultSet rs = stat.executeQuery(sql);
+
+            while (rs.next()){
+                pageNums = rs.getInt(1);
+            }
+
+        }catch(ClassNotFoundException e){
+            e.printStackTrace();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                dbConnection.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+
+        return pageNums;
+    }
+
+
+    //get now page info and return it by result set
+    public ResultSet getPageNowInfoRs(String sql, SeperatePage seperatePage){
+
+        ResultSet rs=null;
+
+        try{
+            dbConnection = getDbConnection();
+            PreparedStatement preStat= dbConnection.prepareStatement(sql);
+
+            preStat.setInt(1, (seperatePage.getPageNow()-1)*seperatePage.getPageSize());
+            preStat.setInt(2, seperatePage.getPageSize());
+
+            rs = preStat.executeQuery();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+
+    //encapsulate page info to arraylist for displaying info
+    public ArrayList<ShowPost> getPageInfo (SeperatePage seperatePage){
+
+        ArrayList <ShowPost> pageNowInfo = new ArrayList<>();
+        sql = "select user_list.userName, user_list.gender, post_list.post_title, post_list.post_time, post_list.post_desc from\n" +
+                "  post_list LEFT JOIN user_list on user_list.userID = post_list.uid order by post_id  ASC limit ?, ?";
+        //try 1~3 comment
+        ShowPost showPost = null;
+
+        ResultSet rs = getPageNowInfoRs(sql, seperatePage);
+        try{
+            while(rs.next()){
+                String userName = rs.getString(1);
+                Boolean gender = rs.getBoolean(2);
+                String postTitle = rs.getString(3);
+                Timestamp timestamp = rs.getTimestamp(4);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String  postTime= dateFormat.format(timestamp);
+                String postDesc = rs.getString(5);
+
+                showPost = new ShowPost(userName, gender, postTitle, postTime, postDesc);
+                pageNowInfo.add(showPost);
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            try{
+                dbConnection.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return pageNowInfo;
+    }
+
+
 
 }
