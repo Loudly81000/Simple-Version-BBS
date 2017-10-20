@@ -470,6 +470,14 @@ delete留言功能
        可以改變pageNow再傳送資料回去
    b.在編輯留言以及messageboard用來取資料的function要將
       分頁的功能導入
+      
+ 10/21
+ 1.每個分頁的資料要
+    a.在Controller取得送到View
+      ->但是到manager.jsp後要直接跳到選擇分頁的那個頁面
+        要操控Navbar,how?
+    b.直接在View就取得(違反MVC精神?)
+      ->取得後也要設定Navbar
  
 
 
