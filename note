@@ -488,6 +488,16 @@ delete留言功能
    b.送出comment再返回頁面
    回到manager.jsp頁面時
    會檢查有沒有pageNow,沒有就設定為1
+ 3.設定navbar
+   manager.jsp接收pageNow的同時
+   要分成是
+   a.messageboard的 or
+   b.editcomment 的
+   
+   如果是a跳回到頁面時要自動開messageboard
+   b的話同理
+   
+  
    
 
 
