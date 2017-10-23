@@ -478,7 +478,17 @@ delete留言功能
         要操控Navbar,how?
     b.直接在View就取得(違反MVC精神?)
       ->取得後也要設定Navbar
- 
+      
+ 10/24
+ 1.藉由pagenumbers跟nowpage來取得分頁的index(一次最多顯示10頁) 
+   的method(O)
+ 2.在servlet做成第一次登入時初始pagenow是1
+   接下來
+   a.user重新整理頁面 or
+   b.送出comment再返回頁面
+   回到manager.jsp頁面時
+   會檢查有沒有pageNow,沒有就設定為1
+   
 
 
 
