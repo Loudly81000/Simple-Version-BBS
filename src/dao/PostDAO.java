@@ -14,10 +14,10 @@ public class PostDAO {
     public static final String username = "zhengfuyi";
     public static final String password = "it6oMGUPNX1utE68";
 
-    private Connection dbConnection  = null;
-    private String sql;
+    private static Connection dbConnection  = null;
+    private static String sql;
 
-    public Connection getDbConnection(){
+    public static Connection getDbConnection(){
         try {
             dbConnection = DriverManager.getConnection(url, username, password);
         }catch(SQLException e){
@@ -27,7 +27,7 @@ public class PostDAO {
     }
 
     //query user's info by userID(primary key)
-    public ArrayList<ShowPost> showPostInfo(){
+    public static ArrayList<ShowPost> showPostInfo(){
 
         ArrayList<ShowPost>post_infoList = new ArrayList<>();
 
@@ -75,7 +75,7 @@ public class PostDAO {
         return post_infoList;
     }
 
-    public Boolean insertPostInfo(PostInfo postInfo){
+    public static Boolean insertPostInfo(PostInfo postInfo){
 
         Boolean result;
 
@@ -115,7 +115,7 @@ public class PostDAO {
     }
 
 
-    public Boolean deletePost(PostInfo postInfo){
+    public static Boolean deletePost(PostInfo postInfo){
 
         Boolean result = false;
 
@@ -153,7 +153,7 @@ public class PostDAO {
 
     //update editted post data to DB
     //input parameter is post edited
-    public Boolean setPostEdited(PostInfo postEdited){
+    public static Boolean setPostEdited(PostInfo postEdited){
 
         Boolean result = true;
 
@@ -194,7 +194,7 @@ public class PostDAO {
 
 
     //query user's info by userID(primary key)
-    public ArrayList<ShowPost> EditPostInfo(User loginUser){
+    public static ArrayList<ShowPost> EditPostInfo(User loginUser){
 
         ArrayList<ShowPost>postInfoList = new ArrayList<>();
 
@@ -254,9 +254,10 @@ public class PostDAO {
         return postInfoList;
     }
 
-    public int getPageNums(){
+    //return page numbers
+    public static int getPageCount(int pageSize){
 
-        int pageNums =0;
+        int rowCount =0;
 
         try {
 
@@ -269,7 +270,7 @@ public class PostDAO {
             ResultSet rs = stat.executeQuery(sql);
 
             while (rs.next()){
-                pageNums = rs.getInt(1);
+                rowCount = rs.getInt(1);
             }
 
         }catch(ClassNotFoundException e){
@@ -284,12 +285,12 @@ public class PostDAO {
             }
         }
 
-        return pageNums;
+        return (rowCount-1)/pageSize +1;
     }
 
 
     //get now page info and return it by result set
-    public ResultSet getPageNowInfoRs(String sql, SeperatePage seperatePage){
+    public static ResultSet getPageNowInfoRs(String sql, SeperatePage seperatePage){
 
         ResultSet rs=null;
 
@@ -310,7 +311,9 @@ public class PostDAO {
 
 
     //encapsulate page info to arraylist for displaying info
-    public ArrayList<ShowPost> getPageInfo (SeperatePage seperatePage){
+    //use this function in controller
+    //catch
+    public static ArrayList<ShowPost> getPageInfo (SeperatePage seperatePage){
 
         ArrayList <ShowPost> pageNowInfo = new ArrayList<>();
         sql = "select user_list.userName, user_list.gender, post_list.post_title, post_list.post_time, post_list.post_desc from\n" +

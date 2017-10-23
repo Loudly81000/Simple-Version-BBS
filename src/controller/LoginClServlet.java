@@ -58,7 +58,7 @@ public class LoginClServlet extends HttpServlet {
 
                 //for showing page seperate (test)
                 SeperatePage sp = new SeperatePage();
-                sp.setPageNow(1);sp.setPageNums(3);
+                sp.setPageNow(1);
                 ArrayList<ShowPost>  pageInfo =  postDAO.getPageInfo(sp);
                 request.setAttribute("pageInfo",pageInfo);
 
@@ -105,7 +105,7 @@ public class LoginClServlet extends HttpServlet {
 
                 //for showing page seperate (test)
                 SeperatePage sp = new SeperatePage();
-                sp.setPageNow(1);sp.setPageNums(3);
+                sp.setPageNow(1);
                 ArrayList<ShowPost>  pageInfo =  postDAO.getPageInfo(sp);
                 request.setAttribute("pageInfo",pageInfo);
 

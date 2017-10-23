@@ -1,4 +1,9 @@
-<%@ page import="javax.xml.ws.Response" %><%--
+<%@ page import="javax.xml.ws.Response" %>
+<%@ page import="domain.User" %>
+<%@ page import="domain.SeperatePage" %>
+<%@ page import="domain.ShowPost" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="dao.PostDAO" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 9/10/2017
@@ -35,6 +40,7 @@
   //check user had loged in or not
   String sessionLogin = (String)s.getAttribute("sessionLogin");
   String url = "";
+
   if(sessionLogin != null && !sessionLogin.equals("sessionLogin")){
            url = "/view/login/loginView.jsp";
       getServletConfig().getServletContext().getRequestDispatcher(url).forward(request, response);
@@ -43,6 +49,23 @@
       url = "/view/login/loginView.jsp";
       getServletConfig().getServletContext().getRequestDispatcher(url).forward(request, response);
   }
+
+    User user = (User) session.getAttribute("user");
+    String userName = user.getUserName();
+    //get pageNow for page seperate design
+    String sPageNow= (String)request.getParameter("pageNow");
+    int pageNow = 1;
+    if(sPageNow!=null){
+        pageNow = Integer.parseInt(sPageNow);
+    }
+
+    //get pages model and set it for displaying
+    SeperatePage sp = new SeperatePage();
+    sp.setPageNow(pageNow);
+    ArrayList<ShowPost> pageInfo =  PostDAO.getPageInfo(sp);
+    request.setAttribute("pageInfo",pageInfo);
+
+
 %>
 <div class="container">
     <div class="row">
@@ -253,6 +276,10 @@
             }
         })
     });
+
+
+
+
 
 </script>
 <%--<button type="button" class="btn btn-primary"--%>
