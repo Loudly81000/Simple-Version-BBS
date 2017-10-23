@@ -496,6 +496,7 @@ delete留言功能
    
    如果是a跳回到頁面時要自動開messageboard
    b的話同理
+   (要用Javascript接收參數再轉頁)
    
   
    
