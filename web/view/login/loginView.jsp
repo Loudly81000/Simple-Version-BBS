@@ -30,8 +30,6 @@
                         <input type="password" class="form-control" id="lg_password" name="password" placeholder="password">
                     </div>
                     <div class="form-group login-group-checkbox">
-                        <input type="checkbox" id="lg_remember" name="lg_remember">
-                        <label for="lg_remember">remember</label>
                     </div>
                 </div>
                 <input type="hidden" name="login" value="login">

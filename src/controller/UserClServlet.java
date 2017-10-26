@@ -26,15 +26,17 @@ public class UserClServlet extends HttpServlet {
         String url = "";
         PostDAO postDAO = new PostDAO();
         UserDAO userDAO = new UserDAO();
+        HttpSession session = request.getSession();
+        User userSession = (User)session.getAttribute("user");
 
 //        if(type.equals("gotoaddInfo")){
 //            url = "/view/addUser/addInfo.jsp";
 //        }
 //
 //
-//        if(type.equals("gotowelcome")){
-//            url="/view/wel.jsp";
-//        }
+        if(type.equals("gotowelcome")){
+            url="/view/wel.jsp";
+        }
 
 
         if(type.equals("addInfo")){
@@ -64,33 +66,29 @@ public class UserClServlet extends HttpServlet {
 
         }
 
-
-        if(type.equals("gotomanager")){
-
-            String login = request.getParameter("login");
-
-            if(login == "login") {
-                //show messge board page
-                ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
-                request.setAttribute("showPostArrayList", showPostArrayList);
-                url = "/view/manager.jsp";
-            }
-
-            if(login == null || login == ""){
-                url = "/view/wel.jsp";
-            }
-
-        }
+//
+//        if(type.equals("gotomanager")){
+//
+//            String login = request.getParameter("login");
+//
+//            if(login == "login") {
+//                //show messge board page
+//                ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
+//                request.setAttribute("showPostArrayList", showPostArrayList);
+//                url = "/view/manager.jsp";
+//            }
+//
+//            if(login == null || login == ""){
+//                url = "/view/wel.jsp";
+//            }
+//
+//        }
 
 
         if(type.equals("insertPost")){
             //Step 1.
-            // get userID by userName
-            String userName= request.getParameter("userName");
-            System.out.println(userName);
-            User user = new User();
-            user.setUserName(userName);
-            User reUser = userDAO.queryByuserName(user);
+            // get userID by session object "userSession"
+            User reUser = userDAO.queryByuserName(userSession);
             int userID = reUser.getUserID();
 
             //Step 2.
@@ -114,12 +112,12 @@ public class UserClServlet extends HttpServlet {
             //Step4.
             //return to message board and show info
             //for showing message board
-            request.setAttribute("userName",userName);
+            request.setAttribute("userName",userSession);
             ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
             request.setAttribute("showPostArrayList",showPostArrayList);
 
             //for showing edit message page
-            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
+            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(userSession);
             request.setAttribute("editPostArrayList", editPostArrayList);
 
             //for showing page seperate (test)
@@ -156,11 +154,8 @@ public class UserClServlet extends HttpServlet {
             request.setAttribute("showPostArrayList",showPostArrayList);
 
             //for showing edit message page
-            String userName = request.getParameter("userName");
-            User user = new User();
-            user.setUserName(userName);
-            request.setAttribute("userName",userName);
-            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
+            request.setAttribute("userName",userSession);
+            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(userSession);
             request.setAttribute("editPostArrayList", editPostArrayList);
 
             //for showing page seperate (test)
@@ -194,11 +189,8 @@ public class UserClServlet extends HttpServlet {
             request.setAttribute("showPostArrayList",showPostArrayList);
 
             //for showing edit message page
-            String userName = request.getParameter("userName");
-            User user = new User();
-            user.setUserName(userName);
-            request.setAttribute("userName",userName);
-            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
+            request.setAttribute("userName",userSession);
+            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(userSession);
             request.setAttribute("editPostArrayList", editPostArrayList);
 
             //for showing page seperate (test)
@@ -220,7 +212,7 @@ public class UserClServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         String sessionLogin = (String)session.getAttribute("sessionLogin");
-        User user = (User)session.getAttribute("user");
+        User userSession = (User)session.getAttribute("user");
         String referer = request.getHeader("Referer");
         String url = "";
         System.out.println(sessionLogin);
@@ -238,7 +230,7 @@ public class UserClServlet extends HttpServlet {
                 request.setAttribute("showPostArrayList", showPostArrayList);
 
                 //for showing edit message page
-                ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
+                ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(userSession);
                 request.setAttribute("editPostArrayList", editPostArrayList);
 
                 //for showing page seperate (test)
