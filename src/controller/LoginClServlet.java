@@ -62,7 +62,7 @@ public class LoginClServlet extends HttpServlet {
                 ArrayList<ShowPost>  pageInfo =  postDAO.getPageInfo(sp);
                 request.setAttribute("pageInfo",pageInfo);
 
-                
+
                 url = "/view/manager.jsp";
 
             }

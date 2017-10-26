@@ -26,9 +26,6 @@ public class UserClServlet extends HttpServlet {
         String url = "";
         PostDAO postDAO = new PostDAO();
         UserDAO userDAO = new UserDAO();
-        HttpSession session = request.getSession();
-        User userSession = (User)session.getAttribute("user");
-
 //        if(type.equals("gotoaddInfo")){
 //            url = "/view/addUser/addInfo.jsp";
 //        }
@@ -88,8 +85,13 @@ public class UserClServlet extends HttpServlet {
         if(type.equals("insertPost")){
             //Step 1.
             // get userID by session object "userSession"
-            User reUser = userDAO.queryByuserName(userSession);
+            String userName= request.getParameter("userName");
+            System.out.println(userName);
+            User user = new User();
+            user.setUserName(userName);
+            User reUser = userDAO.queryByuserName(user);
             int userID = reUser.getUserID();
+            request.setAttribute("userName",userName);
 
             //Step 2.
             // get post info from form and initialize
@@ -112,12 +114,11 @@ public class UserClServlet extends HttpServlet {
             //Step4.
             //return to message board and show info
             //for showing message board
-            request.setAttribute("userName",userSession);
             ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
             request.setAttribute("showPostArrayList",showPostArrayList);
 
             //for showing edit message page
-            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(userSession);
+            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
             request.setAttribute("editPostArrayList", editPostArrayList);
 
             //for showing page seperate (test)
@@ -154,8 +155,14 @@ public class UserClServlet extends HttpServlet {
             request.setAttribute("showPostArrayList",showPostArrayList);
 
             //for showing edit message page
-            request.setAttribute("userName",userSession);
-            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(userSession);
+            String userName= request.getParameter("userName");
+            System.out.println(userName);
+            User user = new User();
+            user.setUserName(userName);
+            User reUser = userDAO.queryByuserName(user);
+            int userID = reUser.getUserID();
+            request.setAttribute("userName",userName);
+            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
             request.setAttribute("editPostArrayList", editPostArrayList);
 
             //for showing page seperate (test)
@@ -189,8 +196,14 @@ public class UserClServlet extends HttpServlet {
             request.setAttribute("showPostArrayList",showPostArrayList);
 
             //for showing edit message page
-            request.setAttribute("userName",userSession);
-            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(userSession);
+            String userName= request.getParameter("userName");
+            System.out.println(userName);
+            User user = new User();
+            user.setUserName(userName);
+            User reUser = userDAO.queryByuserName(user);
+            int userID = reUser.getUserID();
+            request.setAttribute("userName",userName);
+            ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
             request.setAttribute("editPostArrayList", editPostArrayList);
 
             //for showing page seperate (test)

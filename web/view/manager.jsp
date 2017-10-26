@@ -188,6 +188,7 @@
                                         </c:if></div>
                                     <div class="testimonial-writer-company">${editPost.postTime}</div>
                                     <a href="javascript:onClick(<%= i%>)" class="btn btn-primary" style="margin-left: 10px">Edit</a>
+                                    <input type="hidden" name="userName" value="${editPost.userName}">
                                     <input type="button" value="Delete" class="btn btn-primary"
                                            onClick="this.form.action='UserClServlet?type=deleteComment';this.form.submit();">
                                     <input type="submit" class="btn btn-primary" value="Submit">
