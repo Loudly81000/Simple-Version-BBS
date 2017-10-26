@@ -14,7 +14,7 @@
 </head>
 <body>
 <c:if test="${result =='fail'}">
-    <h1>failed!</h1>
+    <h1>failed! </h1>
     <h2><a href="/LoginClServlet?type=gotologinView">return to last page</a></h2>
 </c:if>
 

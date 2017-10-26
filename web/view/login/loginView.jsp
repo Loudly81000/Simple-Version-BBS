@@ -38,8 +38,7 @@
                 <input type="submit" name="submit" class="login-button" id="submit">
             </div>
             <div class="etc-login-form">
-                <p>forgot your password? <a href="/UserClServlet?type=">click here</a></p>
-                <p>new user? <a href="/UserClServlet?type=addInfo">create new account</a></p>
+                <p>new user? <a href="/UserClServlet?type=gotoaddInfo">create new account</a></p>
             </div>
         </form>
     </div>

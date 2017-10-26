@@ -139,7 +139,10 @@ public class LoginClServlet extends HttpServlet {
 
         if(type.equals("logOut")){
             session.removeAttribute("sessionLogin");
-            url = "/view/login/loginView.jsp";
+            session.invalidate();
+            //url = "/view/login/loginView.jsp";
+            response.sendRedirect("/view/login/loginView.jsp");
+            return;
         }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);

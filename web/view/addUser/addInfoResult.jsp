@@ -17,7 +17,7 @@
         <h1>created account successfully</h1>
     </c:when>
     <c:otherwise>
-        <h1>failed!</h1>
+        <h1>failed! The name you chose is already taken.</h1>
     </c:otherwise>
 </c:choose>
 

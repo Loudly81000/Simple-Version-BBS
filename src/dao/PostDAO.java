@@ -318,6 +318,7 @@ public class PostDAO {
         ArrayList <ShowPost> pageNowInfo = new ArrayList<>();
         sql = "select user_list.userName, user_list.gender, post_list.post_title, post_list.post_time, post_list.post_desc from\n" +
                 "  post_list LEFT JOIN user_list on user_list.userID = post_list.uid order by post_id  ASC limit ?, ?";
+        //ASC limit ?, ?
         //try 1~3 comment
         ShowPost showPost = null;
 

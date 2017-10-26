@@ -252,12 +252,8 @@ public class UserClServlet extends HttpServlet {
         }
 
         //if not, return to loggin page
-        if(type.equals("gotoaddInfo") && sessionLogin == null){
+        if(type.equals("gotoaddInfo") ){
                url = "/view/addUser/addInfo.jsp";
-        }
-
-        if( sessionLogin == null){
-            url = "/view/login/loginView.jsp";
         }
 
         if(type.equals("gotowelcome")){

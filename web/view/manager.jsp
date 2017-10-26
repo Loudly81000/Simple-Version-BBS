@@ -42,12 +42,16 @@
   String url = "";
 
   if(sessionLogin != null && !sessionLogin.equals("sessionLogin")){
-           url = "/view/login/loginView.jsp";
-      getServletConfig().getServletContext().getRequestDispatcher(url).forward(request, response);
+           //url = "/view/login/loginView.jsp";
+           response.sendRedirect("/view/login/loginView.jsp");
+           return;
+      //getServletConfig().getServletContext().getRequestDispatcher(url).forward(request, response);
   }
   if(sessionLogin == null){
-      url = "/view/login/loginView.jsp";
-      getServletConfig().getServletContext().getRequestDispatcher(url).forward(request, response);
+      //url = "/view/login/loginView.jsp";
+      response.sendRedirect("/view/login/loginView.jsp");
+      return;
+      //getServletConfig().getServletContext().getRequestDispatcher(url).forward(request, response);
   }
 
     User user = (User) session.getAttribute("user");
