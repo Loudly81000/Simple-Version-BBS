@@ -498,6 +498,43 @@ delete留言功能
    b的話同理
    (要用Javascript接收參數再轉頁)
    
+   10/27
+   1.一次writecomment結果insert data twice
+     發現是Ajax寫錯
+     本來是
+     
+     var frm = $("#frmComment");
+     frm.submit(function(){
+
+        $.ajax({
+            type: "POST",
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (result) {
+                console.log(result);
+                alert("submitted successfully");
+            }
+        })
+     });
+     
+     改成
+     ("#submitComment").click(function(){
+
+        $.ajax({
+            type: "POST",
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (result) {
+                console.log(result);
+                alert("submitted successfully");
+            }
+        })
+        return false;
+    });
+    
+    這樣的話
+    點擊提交鍵後啟動Ajax傳表單資料後再用return false把本來submit的功能封起來
+   
   
    
 
