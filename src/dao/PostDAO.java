@@ -95,7 +95,7 @@ public class PostDAO {
             PreStat.setString(3,postInfo.getPostTime());
             PreStat.setInt(4, postInfo.getUid());
 
-            PreStat.execute();
+            PreStat.executeUpdate();
             result = true;
 
         }catch(SQLException e) {

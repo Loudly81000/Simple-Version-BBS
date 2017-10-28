@@ -151,8 +151,8 @@
                         <textarea id="txtCommentHere" class="form-control" rows="3" name="postDesc" required></textarea>
                         <hr>
                         <%--<button type="button" class="btn btn-success" value="Submit" onclick="writeComment()">Submit</button>--%>
-                        <input type="submit" class="btn btn-success" value="Submit" id="submit">
-                        <input type="hidden" name="userName" value="${userName}" >
+                        <input type="submit" class="btn btn-success" value="Submit" id="submitComment">
+                        <input type="hidden" name="userName" value="${userName}">
                     </form>
 
                     <hr>
@@ -268,8 +268,7 @@
      }
 
     //use Ajax when writing comment
-    var frm = $("#frmComment");
-    frm.submit(function(){
+    ("#submitComment").click(function(){
 
         $.ajax({
             type: "POST",
@@ -280,11 +279,8 @@
                 alert("submitted successfully");
             }
         })
+        return false;
     });
-
-
-
-
 
 </script>
 <%--<button type="button" class="btn btn-primary"--%>

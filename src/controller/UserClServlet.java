@@ -63,25 +63,6 @@ public class UserClServlet extends HttpServlet {
 
         }
 
-//
-//        if(type.equals("gotomanager")){
-//
-//            String login = request.getParameter("login");
-//
-//            if(login == "login") {
-//                //show messge board page
-//                ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
-//                request.setAttribute("showPostArrayList", showPostArrayList);
-//                url = "/view/manager.jsp";
-//            }
-//
-//            if(login == null || login == ""){
-//                url = "/view/wel.jsp";
-//            }
-//
-//        }
-
-
         if(type.equals("insertPost")){
             //Step 1.
             // get userID by session object "userSession"
@@ -102,14 +83,7 @@ public class UserClServlet extends HttpServlet {
             postInfo.setUid(userID);
 
             //Step 3. insertInfo and set uid
-            Boolean result = postDAO.insertPostInfo(postInfo);
-
-            if(result){
-                request.setAttribute("result","success");
-            }
-            if(!result){
-                request.setAttribute("result","fail");
-            }
+            postDAO.insertPostInfo(postInfo);
 
             //Step4.
             //return to message board and show info
