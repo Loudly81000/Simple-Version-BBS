@@ -21,12 +21,9 @@ public class LoginClServlet extends HttpServlet {
     static String loginUser;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String type = request.getParameter("type");
         String url = "";
-        UserDAO userDAO = new UserDAO();
         HttpSession session = request.getSession();
-
         if(type.equals("verification")){
 
             //get user's value from form
@@ -37,19 +34,19 @@ public class LoginClServlet extends HttpServlet {
             User user = new User();
             user.setUserName(userName);
             user.setPassword(password);
-            Boolean verifyRs = userDAO.getVerifyResult(user);
+            Boolean verifyRs = UserDAO.getVerifyResult(user);
 
             //get login result and dispatch to jsp to show result
             if(verifyRs == true){
-                PostDAO postDAO = new PostDAO();
+
                 request.setAttribute("userName",userName);
 
                 //for showing message board
-                ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
+                ArrayList<ShowPost> showPostArrayList = PostDAO.showPostInfo();
                 request.setAttribute("showPostArrayList",showPostArrayList);
 
                 //for showing edit message page
-                ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
+                ArrayList<ShowPost> editPostArrayList = PostDAO.EditPostInfo(user);
                 request.setAttribute("editPostArrayList", editPostArrayList);
 
                 //set session for registration
@@ -59,7 +56,7 @@ public class LoginClServlet extends HttpServlet {
                 //for showing page seperate (test)
                 SeperatePage sp = new SeperatePage();
                 sp.setPageNow(1);
-                ArrayList<ShowPost>  pageInfo =  postDAO.getPageInfo(sp);
+                ArrayList<ShowPost>  pageInfo =  PostDAO.getPageInfo(sp);
                 request.setAttribute("pageInfo",pageInfo);
 
 
@@ -72,7 +69,6 @@ public class LoginClServlet extends HttpServlet {
                 url="/view/login/loginResult.jsp";
             }
         }
-
         getServletContext().getRequestDispatcher(url).forward(request, response);
 
     }
@@ -93,21 +89,18 @@ public class LoginClServlet extends HttpServlet {
             // goto manager.jsp
             if (referer == null) {
 
-                UserDAO userDAO = new UserDAO();
-
                 //for showing message board
-                PostDAO postDAO = new PostDAO();
-                ArrayList<ShowPost> showPostArrayList = postDAO.showPostInfo();
+                ArrayList<ShowPost> showPostArrayList = PostDAO.showPostInfo();
                 request.setAttribute("showPostArrayList", showPostArrayList);
 
                 //for showing edit message page
-                ArrayList<ShowPost> editPostArrayList = postDAO.EditPostInfo(user);
+                ArrayList<ShowPost> editPostArrayList = PostDAO.EditPostInfo(user);
                 request.setAttribute("editPostArrayList", editPostArrayList);
 
                 //for showing page seperate (test)
                 SeperatePage sp = new SeperatePage();
                 sp.setPageNow(1);
-                ArrayList<ShowPost>  pageInfo =  postDAO.getPageInfo(sp);
+                ArrayList<ShowPost>  pageInfo =  PostDAO.getPageInfo(sp);
                 request.setAttribute("pageInfo",pageInfo);
 
                 url = "/view/manager.jsp";
@@ -125,7 +118,7 @@ public class LoginClServlet extends HttpServlet {
 
         //if not, return to loggin page
          if(sessionLogin == null){
-            if( referer != null && referer.startsWith("http://localhost:8080/view/wel.jsp")){
+            if( referer != null ){
                 url="/view/login/loginView.jsp";
             }else {
                 url = "/view/wel.jsp";

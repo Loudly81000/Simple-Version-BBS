@@ -10,8 +10,8 @@ public class UserDAO {
     public static final String username = "zhengfuyi";
     public static final String password = "it6oMGUPNX1utE68";
 
-    private Connection dbConnection  = null;
-    private String sql;
+    private static Connection dbConnection  = null;
+    private static String sql;
 
 
     //insert data to table user_list
@@ -56,7 +56,7 @@ public class UserDAO {
 
 
     //query user's info by userID(primary key)
-    public User queryByuserName(User user){
+    public static User queryByuserName(User user){
 
         User re = null;
 
@@ -99,7 +99,7 @@ public class UserDAO {
 
     //password verification
     //parameter is the value from user inputted
-    public Boolean getVerifyResult(User user){
+    public static Boolean getVerifyResult(User user){
 
         Boolean verifyResult = false;
         User queryResultByuserName = queryByuserName(user);
@@ -111,7 +111,7 @@ public class UserDAO {
     }
 
 
-    public Connection getDbConnection(){
+    public static Connection getDbConnection(){
         try {
             dbConnection = DriverManager.getConnection(url, username, password);
         }catch(SQLException e){

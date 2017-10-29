@@ -26,11 +26,7 @@ public class UserClServlet extends HttpServlet {
         String url = "";
         PostDAO postDAO = new PostDAO();
         UserDAO userDAO = new UserDAO();
-//        if(type.equals("gotoaddInfo")){
-//            url = "/view/addUser/addInfo.jsp";
-//        }
-//
-//
+
         if(type.equals("gotowelcome")){
             url="/view/wel.jsp";
         }
