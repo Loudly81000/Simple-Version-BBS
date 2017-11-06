@@ -31,12 +31,8 @@ public class PostDAO {
 
         ArrayList<ShowPost>post_infoList = new ArrayList<>();
 
-
         try {
 
-            //create sql
-            //SELECT * FROM comment LEFT JOIN user on user.UserID = comment.uid WHERE user.FirstName="qqqqqqqqqqq";
-            //SELECT * FROM post_list LEFT JOIN user_list on user_list.userID = post_list.uid WHERE user_list.userName = "ffff";
             sql =
                     "SELECT user_list.userName, user_list.gender, post_list.post_title, post_list.post_time, post_list.post_desc " +
                             "FROM post_list " +

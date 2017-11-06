@@ -61,9 +61,8 @@ public class UserClServlet extends HttpServlet {
 
         if(type.equals("insertPost")){
             //Step 1.
-            // get userID by session object "userSession"
+            // get userID by userName
             String userName= request.getParameter("userName");
-            System.out.println(userName);
             User user = new User();
             user.setUserName(userName);
             User reUser = userDAO.queryByuserName(user);

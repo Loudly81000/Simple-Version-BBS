@@ -45,13 +45,11 @@
            //url = "/view/login/loginView.jsp";
            response.sendRedirect("/view/login/loginView.jsp");
            return;
-      //getServletConfig().getServletContext().getRequestDispatcher(url).forward(request, response);
   }
   if(sessionLogin == null){
       //url = "/view/login/loginView.jsp";
       response.sendRedirect("/view/login/loginView.jsp");
       return;
-      //getServletConfig().getServletContext().getRequestDispatcher(url).forward(request, response);
   }
 
     User user = (User) session.getAttribute("user");
@@ -69,6 +67,9 @@
     ArrayList<ShowPost> pageInfo =  PostDAO.getPageInfo(sp);
     request.setAttribute("pageInfo",pageInfo);
 
+    response.setHeader("Pragma","no-cache");
+    response.setHeader("Cache-Control","no-cache");
+    response.setDateHeader("Expires", 0);
 
 %>
 <div class="container">
@@ -80,8 +81,8 @@
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="pages" ><i class="fa fa-file-o fa-fw"></i>Message Board</a></li>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="forms"><i class="fa fa-tasks fa-fw"></i>Write Comment</a></li>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="table"><i class="fa fa-table fa-fw"></i>Edit Comment</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="settings" onclick="self.location.href='/LoginClServlet?type=logOut'">
-                     <i class="fa fa-cogs fa-fw"></i>Log Out</a></li>
+                <li><a href="javascript:void(null)" data-target-id="settings" onclick="javascript:location.replace('/LoginClServlet?type=logOut')">
+                        <i class="fa fa-cogs fa-fw"></i>Log Out</a></li>
                 <li><a href="http://www.jquery2dotnet.com" data-target-id="applications"><i class="fa fa-pencil fa-fw"></i>page</a></li>
             </ul>
         </div>
@@ -148,7 +149,7 @@
                             Write a comment
                         </p>
 
-                        <textarea id="txtCommentHere" class="form-control" rows="3" name="postDesc" required></textarea>
+                        <textarea id="txtCommentHere" class="form-control" rows="3" wrap="on" name="postDesc" required></textarea>
                         <hr>
                         <%--<button type="button" class="btn btn-success" value="Submit" onclick="writeComment()">Submit</button>--%>
                         <input type="submit" class="btn btn-success" value="Submit" id="submitComment">
@@ -172,9 +173,9 @@
                         <form action="UserClServlet?type=passpostInfoedited" method="post">
                             <div class="testimonial-section">
                                 <h4>${editPost.postTitle}</h4>
-                                <textarea name="postDesc" rows="3" readonly id="<%= i%>" required>${editPost.postDesc}</textarea>
+                                <textarea name="postDesc" rows="3" wrap="on" readonly id="<%= i%>" required>${editPost.postDesc}</textarea>
                                 <input type="hidden" name="postId" value="${editPost.postId}">
-                                <input type="hidden" name="userName" value="${userName}" >
+                                <%--<input type="hidden" name="userName" value="${userName}" >--%>
                             </div>
                             <div class="testimonial-desc">
                                 <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
@@ -268,18 +269,17 @@
      }
 
     //use Ajax when writing comment
-    ("#submitComment").click(function(){
+    ("#submitComment").click(function(e){
 
         $.ajax({
             type: "POST",
             url: frm.attr('action'),
             data: frm.serialize(),
-            success: function (result) {
-                console.log(result);
-                alert("submitted successfully");
+            success: function (response) {
+                    console.log(arg);
+                    alert("submitted successfully");
             }
         })
-        return false;
     });
 
 </script>
